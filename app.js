@@ -11,6 +11,7 @@ const sslOptions = {
 
 https.createServer(sslOptions, app).listen(443)
 
+app.listen(80)
 app.use(helmet.hsts())
 app.use(express.static("/var/www/squadified/public"))
 app.get("/xhr", (req, res) => {
