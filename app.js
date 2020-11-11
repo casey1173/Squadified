@@ -10,13 +10,9 @@ const sslOptions = {
 
 app.use(express.static("public"))
 
-app.get("/ajax", (req, res) => {
+app.get("/hw", (req, res) => {
     res.writeHead(200)
     res.end("hello world")
 })
 
-app.listen(8000, () => {
-    console.log("listening on port 8000")
-})
-
-https.createServer(sslOptions, app).listen(8080)
+https.createServer(sslOptions, app).listen(80)
