@@ -8,11 +8,10 @@ const sslOptions = {
     cert: fs.readFileSync("/etc/letsencrypt/live/www.squadified.com/fullchain.pem")
 }
 
-app.use(express.static("public"))
+https.createServer(sslOptions, app).listen(443)
 
-app.get("/hw", (req, res) => {
+app.use(express.static("public"))
+app.get("/xhr", (req, res) => {
     res.writeHead(200)
     res.end("hello world")
 })
-
-https.createServer(sslOptions, app).listen(80)
