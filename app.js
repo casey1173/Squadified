@@ -12,6 +12,7 @@ https.createServer(sslOptions, app).listen(443)
 
 app.use(express.static("/var/www/squadified/public"))
 app.get("/xhr", (req, res) => {
+    console.log("incoming request from:\t ", req)
     res.writeHead(200)
     res.end("hello world")
 })
