@@ -10,7 +10,7 @@ const sslOptions = {
 
 https.createServer(sslOptions, app).listen(443)
 
-app.use(express.static("public"))
+app.use(express.static("/var/www/squadified/public"))
 app.get("/xhr", (req, res) => {
     res.writeHead(200)
     res.end("hello world")
