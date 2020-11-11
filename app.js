@@ -1,7 +1,8 @@
 const express = require("express")
 const https = require("https")
+const helmet = require("helmet")
 const fs = require("fs")
-app = express()
+const app = express()
 
 const sslOptions = {
     key: fs.readFileSync("/etc/letsencrypt/live/www.squadified.com/privkey.pem"),
@@ -10,6 +11,7 @@ const sslOptions = {
 
 https.createServer(sslOptions, app).listen(443)
 
+app.use(helmet())
 app.use(express.static("/var/www/squadified/public"))
 app.get("/xhr", (req, res) => {
     console.log("incoming request from:\t ", req)
