@@ -42,7 +42,6 @@ updateToken()
 */
 
 app.get("/authReq", (req, res) => {
-    console.log("ajax is working")
     res.send(authReq)
 })
 
