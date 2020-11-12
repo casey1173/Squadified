@@ -3,14 +3,14 @@ const express = require("express")
 const https = require("https")
 const helmet = require("helmet")
 const fs = require("fs")
-const cookieSession = require("cookie-session")
-const passport =  require("passport")
-const isLoggedIn = require("./middleware/auth")
+const axios = require("axios")
 const app = express()
-require("./passport")
-
 //#endregion
 
+const spotifyClientID = "e877e6ffc92f4caca0352895fa830224"
+const spotifySecret = "8bde01a0227440f6910fe671615e03c8"
+const authReq = "Basic " + Buffer.from(spotifyClientID + ":" + spotifySecret).toString("base64")
+let currToken = ""
 
 const sslOptions = {
     //where certbot put our letsencrypt private and public keys
@@ -23,30 +23,24 @@ https.createServer(sslOptions, app).listen(443)
 app.listen(80) //Have an http port open for first time contact
 app.use(helmet.hsts()) //Use helmet http strict transport security to force https
 app.use(express.static("/var/www/squadified/public")) //static files
-app.use(cookieSession({
-    name: "spotify-auth-session",
-    keys: ["key1", "key2"]
-}))
-app.use(passport.initialize())
-app.use(passport.session())
 
+let updateToken = async function () {
+    const tokenRes = await axios.post({
+        method: "POST",
+        url: "https://accounts.spotify.com/api/token",
+        headers: { "Authorization": authReq },
+        data: {
+            "grant_type": "client_credentials"
+        }
+    })
+    currToken = tokenRes.access_token
+    console.log("fetched new token")
+}
 
+updateToken()
+setInterval(updateToken, 3600 * 1000)
 
-app.get("/me", isLoggedIn, (req, res) =>{
-    res.send(`Good morning spotify user: ${req.user.displayName}`)
+app.get("/printToken", (req, res) => {
+    console.log(currToken)
 })
 
-app.get('/auth/error', (req, res) => res.send('Unknown Error'))
-
-app.get('/auth/spotify',passport.authenticate('spotify'))
-
-app.get('/auth/spotify/callback',passport.authenticate('spotify', { failureRedirect: '/auth/error' }),
-function(req, res) {
-  res.redirect('/');
-});
-
-app.get("/logout", (req, res) => {
-    req.session = null
-    req.logOut()
-    res.redirect("/")
-})
