@@ -33,12 +33,12 @@ let updateToken = async function () {
             "grant_type": "client_credentials"
         }
     })
-    currToken = tokenRes.access_token
+    currToken = tokenRes
     console.log("fetched new token")
 }
 
 updateToken()
-setInterval(updateToken, 3600 * 1000)
+
 
 app.get("/printToken", (req, res) => {
     console.log(currToken)
