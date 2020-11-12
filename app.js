@@ -17,5 +17,5 @@ app.use(express.static("/var/www/squadified/public"))
 app.get("/xhr", async (req, res) => {
     res.writeHead(200)
     res.end("hello world")
-    console.log("incoming request from:\t ", await req.get("host"))
+    console.log("incoming request from:\t ", await req.ip)
 })
