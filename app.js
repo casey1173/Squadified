@@ -14,8 +14,8 @@ https.createServer(sslOptions, app).listen(443)
 app.listen(80)
 app.use(helmet.hsts())
 app.use(express.static("/var/www/squadified/public"))
-app.get("/xhr", (req, res) => {
-    console.log("incoming request from:\t ", req.get("host"))
+app.get("/xhr", async (req, res) => {
     res.writeHead(200)
     res.end("hello world")
+    console.log("incoming request from:\t ", await req.get("host"))
 })
