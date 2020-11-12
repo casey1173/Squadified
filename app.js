@@ -11,7 +11,7 @@ const request = require("request")
 
 const client_id = 'e877e6ffc92f4caca0352895fa830224'; // Your client id
 const client_secret = '8bde01a0227440f6910fe671615e03c8'; // Your secret
-const redirect_uri = 'https://squadified.com/callback'; // Your redirect uri
+const redirect_uri = 'https://squadified.com/callback/'; // Your redirect uri
 const stateKey = "spotify_auth_state"
 //#endregion
 
