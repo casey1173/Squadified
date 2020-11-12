@@ -24,8 +24,9 @@ app.listen(80) //Have an http port open for first time contact
 app.use(helmet.hsts()) //Use helmet http strict transport security to force https
 app.use(express.static("/var/www/squadified/public")) //static files
 
+/*
 let updateToken = async function () {
-    const tokenRes = await axios.post({
+    const tokenRes = axios.post({
         method: "POST",
         url: "https://accounts.spotify.com/api/token",
         headers: { "Authorization": authReq },
@@ -38,9 +39,10 @@ let updateToken = async function () {
 }
 
 updateToken()
+*/
 
-
-app.get("/printToken", (req, res) => {
-    console.log(currToken)
+app.get("/authReq", (req, res) => {
+    console.log("ajax is working")
+    res.send(authReq)
 })
 
