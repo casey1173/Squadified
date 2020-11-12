@@ -15,7 +15,7 @@ app.listen(80)
 app.use(helmet.hsts())
 app.use(express.static("/var/www/squadified/public"))
 app.get("/xhr", (req, res) => {
-    console.log("incoming request from:\t ", req)
+    console.log("incoming request from:\t ", req.headers.origin)
     res.writeHead(200)
     res.end("hello world")
 })
