@@ -32,7 +32,7 @@ app.use(passport.session())
 
 
 
-app.get("/", isLoggedIn, (req, res) =>{
+app.get("/me", isLoggedIn, (req, res) =>{
     res.send(`Good morning spotify user: ${req.user.displayName}`)
 })
 
