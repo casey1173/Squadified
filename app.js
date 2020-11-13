@@ -27,6 +27,11 @@ app.listen(80) //Have an http port open for first time contact
 app.use(helmet.hsts()) //Use helmet http strict transport security to force https
 app.use(express.static("/var/www/squadified/public")) //static files
 
+const spotifyAPI = axios.create({
+    baseURL: "https://api.spotify.com/v1",
+    headers: {"Authorization" : "Bearer " + currToken}
+})
+
 let updateToken = () => {
     axios(
     {
