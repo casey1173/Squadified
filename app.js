@@ -50,7 +50,7 @@ let updateToken = () => {
 }
 
 updateToken()
-setInterval(updateToken, 3600 * 1000)
+//setInterval(updateToken, 3600 * 1000)
 
 app.get("/token", (req, res) => {
     res.send(currToken)
