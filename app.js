@@ -5,7 +5,7 @@ const helmet = require("helmet")
 const fs = require("fs")
 const axios = require("axios")
 const qs = require("querystring")
-const cors = require("cors")
+const cors = require("cors")()
 const app = express()
 
 //#endregion
