@@ -4,6 +4,8 @@ const https = require("https")
 const helmet = require("helmet")
 const fs = require("fs")
 const axios = require("axios")
+const qs = require("querystring")
+const { response } = require("express")
 const app = express()
 //#endregion
 
@@ -12,38 +14,45 @@ const spotifySecret = "8bde01a0227440f6910fe671615e03c8"
 const authReq = "Basic " + Buffer.from(spotifyClientID + ":" + spotifySecret).toString("base64")
 let currToken = ""
 
-console.log(authReq)
-
+/*
 const sslOptions = {
     //where certbot put our letsencrypt private and public keys
     key: fs.readFileSync("/etc/letsencrypt/live/www.squadified.com/privkey.pem"),
     cert: fs.readFileSync("/etc/letsencrypt/live/www.squadified.com/fullchain.pem")
 }
-
-
 https.createServer(sslOptions, app).listen(443)
+*/
+
 app.listen(80) //Have an http port open for first time contact
 app.use(helmet.hsts()) //Use helmet http strict transport security to force https
 app.use(express.static("/var/www/squadified/public")) //static files
 
-/*
-let updateToken = async function () {
-    const tokenRes = axios.post({
-        method: "POST",
+let updateToken = () => {
+    axios(
+    {
         url: "https://accounts.spotify.com/api/token",
-        headers: { "Authorization": authReq },
-        data: {
+        method: "post",
+        headers: {
+            "Authorization": authReq.toString(),
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        data: qs.stringify({
             "grant_type": "client_credentials"
-        }
+        })
     })
-    currToken = tokenRes
-    console.log("fetched new token")
+    .then((response) => {
+        currToken = response.data.access_token
+        console.log("fetched new token:\t" + response.data.access_token)
+    })
+    .catch((error) => {
+        console.log(error)
+    })
 }
 
 updateToken()
-*/
+setInterval(updateToken, 3600 * 1000)
 
-app.get("/authReq", (req, res) => {
-    res.send(authReq)
+app.get("/token", (req, res) => {
+    res.send(currToken)
 })
 
