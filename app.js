@@ -27,10 +27,6 @@ app.listen(80) //Have an http port open for first time contact
 app.use(helmet.hsts()) //Use helmet http strict transport security to force https
 app.use(express.static("/var/www/squadified/public")) //static files
 
-app.get("/token", (req, res) => {
-    res.end(currToken)
-})
-
 let updateToken = () => {
     axios(
     {
@@ -56,5 +52,6 @@ let updateToken = () => {
 updateToken()
 setInterval(updateToken, 3600 * 1000)
 
-
-
+app.get("/token", (req, res) => {
+    res.send(currToken)
+})
