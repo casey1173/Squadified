@@ -28,7 +28,7 @@ app.use(helmet.hsts()) //Use helmet http strict transport security to force http
 app.use(express.static("/var/www/squadified/public")) //static files
 
 app.get("/token", (req, res) => {
-    res.send(currToken)
+    res.end(currToken)
 })
 
 let updateToken = () => {
