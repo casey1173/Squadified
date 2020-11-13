@@ -1,6 +1,7 @@
-const currToken = fetch("https://www.squadified.com/token")
+const currToken = await fetch("https://www.squadified.com/token")
 
 const spotifyAPI = axios.create({
+    method: "get",
     baseURL: "https://api.spotify.com/v1",
     headers: {"Authorization" : "Bearer " + currToken}
 })
@@ -11,9 +12,7 @@ window.onload = () => {
     const result = document.getElementById("result")
     const butt = document.getElementById("request-button")
     butt.addEventListener("click", async (e) => {
-        const apiRes = spotifyAPI.get({
-            url: `/${typeField.value}/${idField.value}`
-        })
-        result.appendChild(document.createTextNode(await apiRes))
+        const apiRes = await spotifyAPI.get(`/${typeField.value}/${idField.value}`)
+        console.log(apiRes)
     })
 }

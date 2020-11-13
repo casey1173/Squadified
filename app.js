@@ -5,8 +5,9 @@ const helmet = require("helmet")
 const fs = require("fs")
 const axios = require("axios")
 const qs = require("querystring")
-const { response } = require("express")
+const cors = require("cors")
 const app = express()
+
 //#endregion
 
 const spotifyClientID = "e877e6ffc92f4caca0352895fa830224"
@@ -26,6 +27,7 @@ https.createServer(sslOptions, app).listen(443)
 app.listen(80) //Have an http port open for first time contact
 app.use(helmet.hsts()) //Use helmet http strict transport security to force https
 app.use(express.static("/var/www/squadified/public")) //static files
+app.use("cors")
 
 const spotifyAPI = axios.create({
     baseURL: "https://api.spotify.com/v1",
