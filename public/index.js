@@ -10,10 +10,10 @@ window.onload = () => {
     const idField = document.getElementById("id-field")
     const result = document.getElementById("result")
     const butt = document.getElementById("request-button")
-    butt.addEventListener("click", (e) => {
+    butt.addEventListener("click", async (e) => {
         const apiRes = spotifyAPI.get({
             url: `/${typeField.value}/${idField.value}`
         })
-        result.appendChild(document.createTextNode(apiRes))
+        result.appendChild(document.createTextNode(await apiRes))
     })
 }
