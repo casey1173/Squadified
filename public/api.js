@@ -23,5 +23,6 @@ getArtists = async function(userName){
         url: `https://api.spotify.com/v1/users/${userName}/playlists`,
         headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`}
     })
+    console.log(playlists.data)
 }
 
