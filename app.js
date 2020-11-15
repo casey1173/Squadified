@@ -44,7 +44,7 @@ let updateToken = () => {
     })
     .then((response) => {
         currToken.code = response.data.access_token
-        currToken.expiresIn = new Date.getTime()
+        currToken.expiresIn = Date.getTime()
         console.log("fetched new token.")
     })
     .catch((error) => {
