@@ -13,7 +13,7 @@ const app = express()
 const spotifyClientID = "e877e6ffc92f4caca0352895fa830224"
 const spotifySecret = "8bde01a0227440f6910fe671615e03c8"
 const authReq = "Basic " + Buffer.from(spotifyClientID + ":" + spotifySecret).toString("base64")
-let currToken = ""
+let currToken = {}
 
 
 const sslOptions = {
@@ -29,11 +29,6 @@ app.use(helmet.hsts()) //Use helmet http strict transport security to force http
 app.use(express.static("/var/www/squadified/public")) //static files
 app.use(cors)
 
-const spotifyAPI = axios.create({
-    baseURL: "https://api.spotify.com/v1",
-    headers: {"Authorization" : "Bearer " + currToken}
-})
-
 let updateToken = () => {
     axios(
     {
@@ -48,8 +43,9 @@ let updateToken = () => {
         })
     })
     .then((response) => {
-        currToken = response.data.access_token
-        console.log("fetched new token:\t" + response.data.access_token)
+        currToken.code = response.data.access_token
+        currToken.expires = new Date.getTime() + response.data.expires_in * 1000
+        console.log("fetched new token.")
     })
     .catch((error) => {
         console.log(error)
