@@ -20,7 +20,7 @@ getResource = async function (path) {
 getArtists = async function(userName){
     const playlists = await axios({
         method: "get",
-        url: `https://users/${userName}/playlists`,
+        url: `https://api.spotify.com/v1/users/${userName}/playlists`,
         headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`}
     })
 }
