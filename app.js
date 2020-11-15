@@ -6,6 +6,7 @@ const fs = require("fs")
 const axios = require("axios")
 const qs = require("querystring")
 const cors = require("cors")()
+
 const app = express()
 
 //#endregion
@@ -21,11 +22,13 @@ const sslOptions = {
     key: fs.readFileSync("/etc/letsencrypt/live/www.squadified.com/privkey.pem"),
     cert: fs.readFileSync("/etc/letsencrypt/live/www.squadified.com/fullchain.pem")
 }
+
 https.createServer(sslOptions, app).listen(443)
 
 
 app.listen(80) //Have an http port open for first time contact
 app.use(helmet.hsts()) //Use helmet http strict transport security to force https
+
 app.use(express.static("/var/www/squadified/public")) //static files
 app.use(cors)
 
@@ -44,7 +47,7 @@ let updateToken = () => {
     })
     .then((response) => {
         currToken.code = response.data.access_token
-        currToken.expiresAt = Date.now() + response.data.expires_in * 3600
+        currToken.expiresAt = Date.now() + response.data.expires_in * 1000
         console.log("fetched new token.")
     })
     .catch((error) => {
@@ -57,4 +60,8 @@ setInterval(updateToken, 3600 * 1000)
 
 app.get("/token", (req, res) => {
     res.send(currToken)
+})
+
+app.get("/example", (req, res) => {
+    res.send("example ajax method")
 })
