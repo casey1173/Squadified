@@ -17,12 +17,31 @@ getResource = async function (path) {
     })).data
 }
 
-getArtists = async function(userName){
+getTopArtists = async function (userName) {
     const playlists = await axios({
         method: "get",
         url: `https://api.spotify.com/v1/users/${userName}/playlists`,
-        headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`}
+        headers: { "Authorization": `Bearer ${(await getCurrToken()).code}` }
     })
-    console.log(playlists.data)
+
+    let artists = []
+
+    playlists.data.items.forEach(async function (pl) {
+        const songs = await axios({
+            method: "get",
+            url: `https://api.spotify.com/v1/playlists/${pl.id}/tracks`,
+            headers: { "Authorization": `Bearer ${(await getCurrToken()).code}` }
+        })
+        songs.data.items.forEach(s => {
+            if (s.track != null) {
+                songArtists = s.track.artists.map((a) => {
+                    return { name: a.name, id: a.uri.split(":")[2] }
+                })
+                artists.push(...songArtists)
+            }
+
+        })
+    })
+    return artists
 }
 
