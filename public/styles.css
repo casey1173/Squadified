@@ -1,0 +1,278 @@
+:root {
+    --spotify-green: rgb(46, 204, 113)
+}
+
+* {
+    font-family: "Courier New";
+}
+
+.info-text {
+    color: white;
+    font-size: 14pt;
+    display: inline;
+}
+
+#h-bar {
+    display: flex;
+
+}
+
+#modal-screen {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(46, 204, 113, 0.9);
+    z-index: 1;
+}
+
+#user-select-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 800px;
+    height: 450px;
+    background-color: black;
+    border-radius: 5%;
+    box-shadow: 10px 10px white;
+}
+
+#playlist-select-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 850px;
+    min-height: 650px;
+    background-color: black;
+    border-radius: 5%;
+    box-shadow: 10px 10px white;
+}
+
+.link-box{
+    height: 50px;
+    padding: 10px;
+    margin-bottom: 20px;
+    color: black;
+    background-color: var(--spotify-green);
+    box-shadow: 3px 3px white;
+    border-radius: 3px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14pt;
+    text-shadow: 1px 1px white;
+}
+
+.user-input-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    border-color: white;
+    border-width: 3px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.user-search-field {
+    margin: 5px;
+    font-family: "Courier New";
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-size: 16pt;
+}
+
+textarea.user-search-field {
+    resize: none;
+    width: 350px;
+    font-size: 12pt;
+}
+
+.get-user-butt {
+    margin: 5px;
+    font-size: 14pt;
+    background-color: var(--spotify-green);
+    width: 100%;
+    cursor: pointer;
+}
+
+.add-pl-butt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4px;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 5px;
+    background-color: var(--spotify-green);
+    cursor: pointer;
+}
+
+.add-pl-butt > img {
+    width: 3em;
+    height: 3em;
+    filter: invert(100%);
+}
+
+.user-profile {
+    display: flex;
+    align-content: center;
+    padding: 5px;
+    margin: 5px;
+    border-width: 3px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 5px;
+    box-shadow: 5px 5px var(--spotify-green);
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+.user-avi {
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+.user-search-label {
+    color: white;
+    font-family: "Courier New";
+}
+
+.section-heading {
+    font-family: "Courier New";
+    color: white;
+    text-shadow: 2px 2px forestgreen;
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.next-button {
+    text-align: center;
+    margin: 20px;
+    border-radius: 10px;
+    width: 300px;
+    height: 80px;
+    background-color: black;
+    box-shadow: 10px 10px white;
+    cursor: pointer;
+
+}
+
+.playlist-list {
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.included-list {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    border-radius: 5px;
+    border-color: var(--spotify-green);
+    border-width: 3px;
+    border-style: solid;
+}
+
+.list-item {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    margin: 5px;
+    padding: 4px;
+    max-height: 90px;
+    width: 340px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    color: white;
+}
+
+:disabled {
+    cursor: not-allowed;
+    filter: grayscale(100%);
+}
+
+.animated-exit {
+    animation-name: slide-out;
+    animation-duration: 2s;
+}
+
+.animated-entry {
+    animation-name: slide-in;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.fade-entry {
+    animation-name: fade-in;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.fade-exit {
+    animation-name: fade-out;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.become-black{
+    animation: fade-to-black 2s 1 forwards;
+}
+
+.become-green{
+    animation: fade-to-green 2s 1 forwards;
+}
+
+@keyframes fade-to-green {
+    100%{background-color: var(--spotify-green)}
+}
+
+@keyframes fade-to-black {
+    100%{background-color: black}
+}
+
+
+@keyframes slide-in {
+    0%{transform: translateY(-100vh)}
+    100%{transform: translateY(0px)}
+}
+
+@keyframes  slide-out {
+    0%{transform: translateX(0px)}
+    100% {transform: translateX(-110vw)}
+}
+
+@keyframes fade-in {
+    0%{opacity: 0}
+    100%{opacity: 1}
+}
+
+@keyframes fade-out {
+    0%{opacity: 1}
+    100%{opacity: 0}
+}
+

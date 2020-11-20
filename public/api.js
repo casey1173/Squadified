@@ -9,39 +9,93 @@ getCurrToken = async function () {
     }
 }
 
-getResource = async function (path) {
-    return (await axios({
+getUser = async function (username) {
+    userObject = (await axios({
         method: "get",
-        url: `https://api.spotify.com/v1/` + path,
-        headers: { "Authorization": `Bearer ${(await getCurrToken()).code}` }
+        url: `https://api.spotify.com/v1/users/${username}`,
+        headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`}
     })).data
+
+    return userObject
 }
 
-getTopArtists = async function (userName) {
-    const playlists = await axios({
-        method: "get",
-        url: `https://api.spotify.com/v1/users/${userName}/playlists`,
-        headers: { "Authorization": `Bearer ${(await getCurrToken()).code}` }
-    })
+getPlaylists = async function (username) {
 
-    let artists = []
+    let playlists = []
+    let offset = 0
+    const limit = 20
 
-    playlists.data.items.forEach(async function (pl) {
-        const songs = await axios({
+    do {
+        playlistResponse = (await axios({
             method: "get",
-            url: `https://api.spotify.com/v1/playlists/${pl.id}/tracks`,
-            headers: { "Authorization": `Bearer ${(await getCurrToken()).code}` }
-        })
-        songs.data.items.forEach(s => {
-            if (s.track != null) {
-                songArtists = s.track.artists.map((a) => {
-                    return { name: a.name, id: a.uri.split(":")[2] }
-                })
-                artists.push(...songArtists)
-            }
+            url: `https://api.spotify.com/v1/users/${username}/playlists`,
+            headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
+            params: {"offset": offset, "limit": limit}
+        })).data
 
-        })
+        playlists.push(...(playlistResponse.items))
+        offset += limit
+    } while (playlists.length < playlistResponse.total)
+    return playlists
+}
+
+getSongs = async function (playlists) {
+    let songs = []
+    for (const pl of playlists) {
+        let offset = 0
+        const limit = 100
+        let trackList = []
+        let i = playlists.indexOf(pl)
+        do {
+            const response = (await axios({
+                method: "get",
+                url: `https://api.spotify.com/v1/playlists/${playlists[i].id}/tracks`,
+                headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
+                params: {
+                    "fields": "items(track.id, track.name)",
+                    "offset": offset,
+                    "limit": limit,
+                }
+            })).data.items
+            trackList.push(...response)
+            offset += limit
+
+        }while(trackList.length < playlists[i].tracks.total)//trackList.length < playlists[i].tracks.total
+
+        songs.push(...trackList)
+
+    }
+    songs = songs.map((s, i) => {
+        return songs[i].track
     })
-    return artists
+    return songs
+}
+
+getSongFeatures = async function (songs) {
+    let songIDs = (await songs).map(s => s.id)
+    let featuresArray = []
+
+    if (songIDs.length > 100) {
+        let chunkedSongIDs = _.chunk(songIDs, 100)
+        chunkedSongIDs.forEach(async (ch, i) => {
+            const features = (await axios({
+                method: "get",
+                url: "https://api.spotify.com/v1/audio-features",
+                headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
+                params: {"ids": chunkedSongIDs[i].join(",")}
+            })).data
+            featuresArray.push(...features.audio_features)
+        })
+
+    } else {
+        const features = (await axios({
+            method: "get",
+            url: "https://api.spotify.com/v1/audio-features",
+            headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
+            params: {"ids": songIDs.join(",")}
+        })).data.audio_features
+        featuresArray.push(...features)
+    }
+    return featuresArray
 }
 
