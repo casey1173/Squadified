@@ -119,10 +119,12 @@ app.get("/songs", (req, res) => {
             const features = response.data.audio_features;
             //console.log("spotify features: ", features)
             //console.log("spotifySongs: ", spotifySongs)
-            Song.createSongs(spotifySongs)
-            Song.addFeatures(spotifySongs, features)
             songFeatures.push(...features)
             res.send(songFeatures)
+            Song.createSongs(spotifySongs)
+            Song.addFeatures(spotifySongs, features)
+            
+            //res.send(songFeatures)
         })
         /*
         const features = (axios({
