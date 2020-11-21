@@ -103,7 +103,7 @@ app.get("/songs", (req, res) => {
     console.log("stored songs: ", storedSongs)
     console.log("spotify songs: ", spotifySongs)
     if (spotifySongs != []) {
-        const features = (await axios({
+        const features = (axios({
             method: "get",
             url: "https://api.spotify.com/v1/audio-features",
             headers: req.headers,

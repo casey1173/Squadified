@@ -79,6 +79,7 @@ getSongFeatures = async function (songs) {
         params: {"ids": songIDs.join(","),
                  "names": songNames.join(",")}
     })).data
+    console.log("features given by server: ", features)
     /*
     const features = (await axios({
         method: "get",
