@@ -495,7 +495,7 @@ async function uploadSong(song) {
     const artistNames = song.artists.map(a => a.name).join(", ");
     const songName = song.name;
     const songId = song.id;
-    const song = await axios({
+    const newSong = await axios({
         method: 'post',
         url: 'https://squadified.com/song',
         data: {
