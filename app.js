@@ -106,13 +106,13 @@ app.get("/songs", (req, res) => {
     })
     //console.log("stored songs: ", storedSongs)
     //console.log("spotify songs: ", spotifySongs)
-    console.log(req.headers.Authorization);
+    console.log(req.headers.authorization);
     //console.log(spotifySongs.join(","))
 
     if (spotifySongs != []) {
 
         axios.get("https://api.spotify.com/v1/audio-features", {
-            headers: {"Authorization": req.headers.Authorization},
+            headers: {"Authorization": req.headers.authorization},
             params: {"ids": spotifySongs.join(",")}
         }).then((response) => {
             console.log("spotify response: ", response)
