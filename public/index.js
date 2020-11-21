@@ -439,7 +439,7 @@ async function renderSongBubble(song){
 
     const albumCover = document.createElement("img")
     albumCover.src = imageURL
-    console.log(imageURL)
+    //console.log(imageURL)
     albumCover.alt = "album cover"
     sBubble.appendChild(albumCover)
 

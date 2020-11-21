@@ -85,9 +85,10 @@ app.post("/song", (req, res) => {
 })
 
 app.get("/songs", (req, res) => {
-    console.log("songs req file: ", req);
-    let sIds = (req.params.ids).split(',');
-    let sNames = (req.params.names).split(',');
+
+    console.log("songs req file: ", req.params);
+    let sIds = ((req.params).ids).split(',');
+    let sNames = ((req.params).names).split(',');
     let storedSongs = [];
     let spotifySongs = [];
     count = 0;
