@@ -1,5 +1,6 @@
 const LINK_TO_USERNAME = "https://www.spotify.com/account/overview/"
 let state = {
+    /**
     user1: {
         "display_name": "Grant Fourie",
         "external_urls": {
@@ -36,6 +37,9 @@ let state = {
         "type": "user",
         "uri": "spotify:user:renreynolds12"
     },
+     **/
+    user1: {},
+    user2: {},
     user1Playlists: [],
     user2Playlists: [],
     user1Included: [],
@@ -345,6 +349,7 @@ async function renderResults() {
     const canvasContainer = document.createElement("div")
     canvasContainer.classList.add("canvas-container", "animated-entry")
     const canvas = document.createElement("canvas")
+    canvas.style.maxWidth = "60%"
     const chart = new Chart(canvas, {
         // The type of chart we want to create
         type: 'bar',
@@ -379,20 +384,42 @@ async function renderResults() {
         }
     })
     canvasContainer.appendChild(canvas)
-    document.getElementById("modal-screen").appendChild(canvasContainer)
 
-    renderRecommendations()
+    const featureInfo = document.createElement("p")
+    featureInfo.classList.add("info-text")
+    featureInfo.innerHTML = `
+    <strong>Danceability</strong> is based on tempo, rhythm and beat strength.<br>
+    <strong>Energy</strong> indicates tracks which are loud, fast and noisy.<br>
+    <strong>Acousticness</strong> is a prediction of whether the track is acoustic<br>
+    <strong>Positivity</strong> is how happy or cheerful a song sounds, with low values sounding depressed or angry
+    `
+    canvasContainer.appendChild(featureInfo)
+
+    document.getElementById("modal-screen").appendChild(canvasContainer)
+    document.getElementById("modal-screen").appendChild(await renderRecommendations())
+
 
 }
 
-async function renderRecommendations(parent){
+async function renderRecommendations(){
     const seedTracks = _.sampleSize(state.user1Songs.map(s => s.id), 2).join(",") + "," + _.sampleSize(state.user2Songs.map(s => s.id), 2).join(",")
     const targetFeatures = {}
     for (let i = 0; i < LABELS.length; i++) {
         targetFeatures[LABELS[i].toLowerCase()] = parseFloat(((parseFloat(state.user1Results[i]) + parseFloat(state.user2Results[i]))/2).toPrecision(2))
     }
     const recRes = await getRecomendation(seedTracks, targetFeatures)
-    renderSongBubble(recRes.tracks[0])
+    const bubblesContainer = document.createElement("div")
+    bubblesContainer.classList.add("bubbles-container")
+
+    const shareMessage = document.createElement("h1")
+    shareMessage.classList.add("section-heading", "fade-entry")
+    shareMessage.appendChild(document.createTextNode("Songs to share: "))
+    bubblesContainer.appendChild(shareMessage)
+
+    recRes.tracks.forEach(async t => bubblesContainer.appendChild(await renderSongBubble(t)))
+
+
+    return bubblesContainer
 
 }
 
@@ -400,11 +427,39 @@ async function renderSongBubble(song){
     console.log(song)
     const artistNames = song.artists.map(a => a.name).join(", ")
     const songName = song.name
-    const imageURL = song.album.images[song.album.images.length - 1]
+    const imageURL = song.album.images[0].url
+    const spotifyLink = song.external_urls.spotify
+
 
     const sBubble = document.createElement("div")
-    sBubble.classList.add("song-bubble")
+    sBubble.classList.add("song-bubble", "animated-entry")
+    sBubble.onclick = () => {window.open(spotifyLink, "_blank")}
 
+    const albumCover = document.createElement("img")
+    albumCover.src = imageURL
+    console.log(imageURL)
+    albumCover.alt = "album cover"
+    sBubble.appendChild(albumCover)
+
+    const circTextContainer = document.createElement("div")
+    circTextContainer.classList.add("circ-text-container")
+    circularText((artistNames.length > 50 ? artistNames.substring(0, 47) + "..." : artistNames.padEnd(" ", 50)) + " | " + (songName.length > 50 ? songName.substring(0, 47) + "..." : songName.padEnd(" ", 50)) + " | ", 120, circTextContainer)
+    sBubble.appendChild(circTextContainer)
+
+    return sBubble
+}
+
+function circularText(txt, radius, parent) {
+    txt = txt.split("")
+
+    var deg = 360 / txt.length,
+        origin = 0;
+
+    txt.forEach((ea) => {
+        ea = `<p style='height:${radius}px;position:absolute;transform:rotate(${origin}deg);transform-origin:0 100%'>${ea}</p>`;
+        parent.innerHTML += ea;
+        origin += deg;
+    });
 }
 
 async function getAvgFeatures(featuresArray) {
@@ -435,10 +490,10 @@ async function getAvgFeatures(featuresArray) {
 
 window.onload = async function () {
     attachModal()
-    //renderUserSelector()
-    state.user1Playlists = getPlaylists("216b2zmcnk3bprifcfvctpfoq")
-    state.user2Playlists = getPlaylists("renreynolds12")
-    renderPlaylistIncluder()
+    renderUserSelector()
+    //state.user1Playlists = getPlaylists("216b2zmcnk3bprifcfvctpfoq")
+    //state.user2Playlists = getPlaylists("renreynolds12")
+    //renderPlaylistIncluder()
 
 }
 
@@ -471,5 +526,10 @@ window.addEventListener("animationend", (e) => {
     }
     if (e.path[0].classList.contains("loading-lp") && e.animationName == "slide-out") {
         renderResults()
+    }
+    if(e.path[0].classList.contains("canvas-container") && e.animationName == "slide-in"){
+        renderRecommendations()
+    }if(e.path[0].classList.contains("song-bubble") && e.animationName == "slide-in"){
+        e.path[0].classList.replace("animated-entry", "spin-forever")
     }
 })

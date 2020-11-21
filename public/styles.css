@@ -210,18 +210,70 @@ textarea.user-search-field {
 }
 
 .canvas-container{
-    width: 80%;
-    height: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+}
+
+.bubbles-container{
+    align-self: flex-end ;
+    margin-top: 100px;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+    scrollbar-color: var(--spotify-green) rgba(0,0,0,0);
+}
+*::-webkit-scrollbar{
+    width: 12px;
+}
+
+*::-webkit-scrollbar-track{
+    background: transparent;
+}
+*::-webkit-scrollbar-thumb{
+    border-radius: 15px;
+    background-color: var(--spotify-pink);
 }
 
 .song-bubble {
-    width: 200px;
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    margin: 5px;
+    width: 250px;
+    height: 250px;
+    flex: 0 0 auto;
     border: var(--spotify-green) 3px solid;
+    border-radius: 125px;
 }
+
+.song-bubble:hover{
+    cursor: pointer;
+}
+.song-bubble img{
+    border-radius: 75px;
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    width: 150px;
+    height: 150px;
+}
+
+.circ-text-container{
+    position: fixed;
+    top: -10px;
+    left: 125px;
+    color: white;
+    width: 250px;
+    height: 250px;
+    font-weight: bold;
+}
+
 
 :disabled {
     cursor: not-allowed;
@@ -242,14 +294,14 @@ textarea.user-search-field {
 
 .fade-entry {
     animation-name: fade-in;
-    animation-duration: 2s;
+    animation-duration: 3s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
 
 .fade-exit {
     animation-name: fade-out;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
@@ -270,6 +322,11 @@ textarea.user-search-field {
 
 .spin-on-load{
     animation: spin 1s 3 forwards;
+}
+
+.spin-forever{
+    animation: spin 30s infinite forwards;
+    animation-timing-function: linear;
 }
 
 @keyframes fade-to-green {
