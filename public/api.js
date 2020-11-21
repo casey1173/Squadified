@@ -80,7 +80,7 @@ getSongFeatures = async function (songs) {
         headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
         params: {"ids": songIDs.join(",")}
                  //"names": songNames.join(",")}
-    })).catch((err)=>console.log(err));
+    }))
     //console.log("complete response from server: ", features)
     var features2 = features.data;
     console.log("features/data given by server: ", features2)
