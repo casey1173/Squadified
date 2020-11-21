@@ -497,7 +497,7 @@ async function uploadSong(song) {
     const songId = song.id;
     const newSong = await axios({
         method: 'post',
-        url: 'squadified.com/song',
+        url: 'http://squadified.com/song',
         data: {
             sid: songId,
             name: songName,
