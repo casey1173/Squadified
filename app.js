@@ -86,9 +86,46 @@ app.post("/song", (req, res) => {
 
 app.get("/songs", (req, res) => {
 
-    console.log("songs req file: ", req.params);
+    console.log("songs req params: ", req.params);
+    console.log("songs req query: ", req.query);
     let sIds = ((req.query).ids).split(',');
     let sNames = ((req.query).names).split(',');
+    let storedSongs = [];
+    let spotifySongs = [];
+    count = 0;
+    sIds.forEach(function(sid) {
+        songData = Song.findByID(sid);
+        if (songData != null) {
+            storedSongs.push(songData.features)
+            count = count+1;
+        } else {
+            spotifySongs.push([sid, sNames[count]]);
+            count = count+1;
+        }
+    })
+    console.log("stored songs: ", storedSongs)
+    console.log("spotify songs: ", spotifySongs)
+    if (spotifySongs != []) {
+        const features = (axios({
+            method: "get",
+            url: "https://api.spotify.com/v1/audio-features",
+            headers: req.headers,
+            params: {"ids": spotifySongs.join(",")}
+        })).data.audio_features
+        Song.createSongs(spotifySongs)
+        Song.addFeatures(spotifySongs, features)
+        storedSongs.push(...features)
+    }
+    console.log("returned features list: ", storedSongs)
+    res.send(storedSongs)
+    return storedSongs;    
+    //res.json(s);
+});
+
+app.post("/songs", (req, res) => {
+
+    let sIds = (req.data).ids
+    let sNames = (req.data).names
     let storedSongs = [];
     let spotifySongs = [];
     count = 0;

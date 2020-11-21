@@ -66,22 +66,30 @@ getSongs = async function (playlist) {
 
 getSongFeatures = async function (songs) {
     let songIDs = (await songs).map(s => s.id)
-    let songNames = (await songs).map(s => s.name)
+    //let songNames = (await songs).map(s => s.name)
     let featuresArray = []
 
     songIDs.splice(100)
-    songNames.splice(100)
+    //songNames.splice(100)
     console.log(songIDs)
     console.log(songNames)
-
+    /*
     const features = (await axios({
         method: "get",
         url: "https://www.squadified.com/songs",
         headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
-        params: {"ids": songIDs.join(","),
-                 "names": songNames.join(",")}
+        params: {"ids": songIDs.join(",")}
+                 //"names": songNames.join(",")}
     })).data
-    
+    */
+   const features = (await axios({
+    method: "post",
+    url: "https://www.squadified.com/songs",
+    headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
+    data: {"ids": songIDs,
+            "names": songNames}
+    })).data
+
     console.log("features given by server: ", features)
     /*
     const features = (await axios({
