@@ -80,9 +80,10 @@ getSongFeatures = async function (songs) {
         headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
         params: {"ids": songIDs.join(",")}
                  //"names": songNames.join(",")}
-    })).data
-    
-    console.log("features given by server: ", features)
+    }))
+    console.log("complete response from server: ", features)
+    features = features.data;
+    console.log("features/data given by server: ", features)
     /*
     const features = (await axios({
         method: "get",
