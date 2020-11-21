@@ -41,4 +41,13 @@ Song.create = (sid, name) => {
     return s;
 }
 
+Song.findByID = (sid) => {
+    let sData = song_data.get(sid);
+    if (sData != null) {
+        //return new Song(bdata.id, bdata.title, bdata.price, bdata.authors);
+        return sDada;
+    }
+    return null;
+}
+
 module.exports = Song;
