@@ -71,6 +71,8 @@ getSongFeatures = async function (songs) {
 
     songIDs.splice(100)
     songNames.splice(100)
+    console.log(songIDs)
+    console.log(songNames)
 
     const features = (await axios({
         method: "get",
