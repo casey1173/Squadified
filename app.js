@@ -10,12 +10,12 @@ const cors = require("cors")()
 const Song = require('./Song.js');
 
 
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 
 
 const app = express()
 //#endregion
-app.use(bodyParser.json());
+//app.use(bodyParser.json());
 
 
 const spotifyClientID = "e877e6ffc92f4caca0352895fa830224"
@@ -96,10 +96,8 @@ app.get("/songs", (req, res) => {
         songData = Song.findByID(sid);
         if (songData != null) {
             storedSongs.push(songData.features)
-            count = count+1;
         } else {
             spotifySongs.push(sid);
-            count = count+1;
         }
     })
     //console.log("stored songs: ", storedSongs)
