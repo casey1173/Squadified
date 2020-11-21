@@ -66,11 +66,11 @@ getSongs = async function (playlist) {
 
 getSongFeatures = async function (songs) {
     let songIDs = (await songs).map(s => s.id)
-    //let songNames = (await songs).map(s => s.name)
+    let songNames = (await songs).map(s => s.name)
     let featuresArray = []
 
     songIDs.splice(100)
-    //songNames.splice(100)
+    songNames.splice(100)
     console.log(songIDs)
     console.log(songNames)
     /*
