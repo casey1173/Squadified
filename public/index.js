@@ -351,10 +351,10 @@ async function getAvgFeatures(featuresArray){
 
 window.onload = async function(){
     attachModal()
-    //renderUserSelector()
-    state.user1Playlists = getPlaylists("216b2zmcnk3bprifcfvctpfoq")
-    state.user2Playlists = getPlaylists("renreynolds12")
-    renderPlaylistIncluder()
+    renderUserSelector()
+    //state.user1Playlists = getPlaylists("216b2zmcnk3bprifcfvctpfoq")
+    //state.user2Playlists = getPlaylists("renreynolds12")
+    //renderPlaylistIncluder()
 
 }
 
