@@ -6,7 +6,7 @@ class Song {
         //this.uri = uri; // The Spotify URI for the track
         //this.name = name; //name of song
         //this.artist = artist; //song's artist
-        this.features = [];
+        this.features = {};
         
     }
 
