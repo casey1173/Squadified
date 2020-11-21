@@ -9,6 +9,7 @@ const cors = require("cors")()
 
 const Song = require('./Song.js');
 
+
 const bodyParser = require('body-parser');
 
 
@@ -83,11 +84,37 @@ app.post("/song", (req, res) => {
     return res.json(s);
 })
 
-app.get("/song/:id", (req, res) => {
-    let s = Song.findByID(req.params.id);
-    if (s == null) {
-        res.status(404).send("Song not found");
-        return;
+app.get("/songs", (req, res) => {
+    let sIds = (req.params.ids).split(',');
+    let sNames = (req.params.names).split(',');
+    let storedSongs = [];
+    let spotifySongs = [];
+    count = 0;
+    sIds.forEach(function(sid) {
+        songData = Song.findByID(sid);
+        if (songData != null) {
+            storedSongs.push(songData.features)
+            count = count+1;
+        } else {
+            spotifySongs.push([sid, sNames[count]]);
+            count = count+1;
+        }
+    })
+    console.log("stored songs: ", storedSongs)
+    console.log("spotify songs: ", spotifySongs)
+    if (spotifySongs != []) {
+        const features = (await axios({
+            method: "get",
+            url: "https://api.spotify.com/v1/audio-features",
+            headers: req.headers,
+            params: {"ids": spotifySongs.join(",")}
+        })).data.audio_features
+        Song.createSongs(spotifySongs)
+        Song.addFeatures(spotifySongs, features)
+        storedSongs.push(...features)
     }
-    res.json(s);
+    console.log("returned features list: ", storedSongs)
+    res.send(storedSongs)
+    return storedSongs;    
+    //res.json(s);
 });

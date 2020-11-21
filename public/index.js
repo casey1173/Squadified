@@ -491,22 +491,6 @@ async function getAvgFeatures(featuresArray) {
     return avgFeatures
 }
 
-async function uploadSong(song) {
-    const artistNames = song.artists.map(a => a.name).join(", ");
-    const songName = song.name;
-    const songId = song.id;
-    const newSong = await axios({
-        method: 'post',
-        url: 'http://squadified.com/song',
-        data: {
-            sid: songId,
-            name: songName,
-            artist: artistNames
-        }
-    }).catch((err) => {
-        console.log(err);
-    });
-}
 
 async function addSongFeatures(song) {
 
