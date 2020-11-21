@@ -42,6 +42,8 @@ let state = {
     user2Included: [],
     user1Songs: [],
     user2Songs: [],
+    user1Results :{},
+    user2Results: {}
 }
 
 /**
@@ -196,7 +198,6 @@ async function renderPlaylistIncluder() {
 
     modal.appendChild(container)
     modal.appendChild(resultsButton)
-    console.log(state)
 }
 
 async function renderMatchingPlaylists(textArea) {
@@ -315,10 +316,40 @@ async function renderUserProfile(username, parent) {
 
 
 async function renderResults(){
+    const modal = document.getElementById("modal-screen")
+    const loadingLP = document.createElement("img")
+    loadingLP.classList.add("animated-entry", "loading-lp")
+    loadingLP.src = "./loading-LP.PNG"
+    modal.appendChild(loadingLP)
+    console.log(state)
+
+    const user1AvgFeatures = getAvgFeatures(await getSongFeatures( await getSongs(state.user1Included)))
+    console.log(user1AvgFeatures)
 
 }
 
-window.onload = async () => {
+async function getAvgFeatures(featuresArray){
+    const numSongs = featuresArray.length
+    let avgFeatures = {
+        danceability: 0,
+        energy: 0,
+        acousticness: 0,
+        loudness: 0,
+        valence: 0,
+        tempo: 0,
+    }
+    for (const f in featuresArray){
+        for (const k in Object.keys(avgFeatures)){
+            avgFeatures.k += f.k
+        }
+    }
+    for (const k in Object.keys(avgFeatures)){
+        avgFeatures.k = avgFeatures.k / numSongs
+    }
+    return avgFeatures
+}
+
+window.onload = async function(){
     attachModal()
     //renderUserSelector()
     state.user1Playlists = getPlaylists("216b2zmcnk3bprifcfvctpfoq")
@@ -335,8 +366,9 @@ window.addEventListener("click", (e) => {
 })
 
 window.addEventListener("animationend", (e) => {
+
     if (e.animationName == "slide-out" || e.animationName == "fade-out") {
-        console.log(e)
+
         document.querySelectorAll(".animated-exit, .fade-exit").forEach((e) => {
             e.remove()
         })
@@ -345,7 +377,9 @@ window.addEventListener("animationend", (e) => {
         renderPlaylistIncluder()
     }
     if (e.path[0].id == "playlist-select-container" && e.animationName == "slide-out") {
-        console.log(getSongFeatures(getSongs(state.user2Included)))
         renderResults()
+    }
+    if(e.path[0].classList.contains("loading-lp") && e.animationName == "slide-in"){
+        document.getElementsByClassName("loading-lp")[0].classList.replace("animated-entry", "spin-on-load")
     }
 })

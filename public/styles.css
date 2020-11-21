@@ -247,6 +247,16 @@ textarea.user-search-field {
     animation: fade-to-green 2s 1 forwards;
 }
 
+.loading-lp{
+    width: 400px;
+    height: 400px;
+    filter: invert(100%);
+}
+
+.spin-on-load{
+    animation: spin 2s infinite forwards;
+}
+
 @keyframes fade-to-green {
     100%{background-color: var(--spotify-green)}
 }
@@ -274,5 +284,10 @@ textarea.user-search-field {
 @keyframes fade-out {
     0%{opacity: 1}
     100%{opacity: 0}
+}
+
+@keyframes spin {
+    0%{transform: rotateZ(0deg)}
+    100%{transform: rotateZ(360deg)}
 }
 
