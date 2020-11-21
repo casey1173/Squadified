@@ -100,6 +100,7 @@ app.get("/songs", (req, res) => {
     sIds.forEach(function(sid) {
         songData = Song.findByID(sid);
         if (songData != null) {
+            console.log("adding songs from database!")
             songFeatures.push(songData.features)
         } else {
             spotifySongs.push(sid);
@@ -123,7 +124,6 @@ app.get("/songs", (req, res) => {
             res.send(songFeatures)
             Song.createSongs(spotifySongs)
             Song.addFeatures(spotifySongs, features)
-            
             //res.send(songFeatures)
         })
         /*

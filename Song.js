@@ -42,6 +42,7 @@ Song.addFeatures = (sid, duration, key, mode, acousticness, danceability, energy
 */
 Song.addFeatures = (sid, features) => {
     let count = 0;
+    console.log("adding features to songs")
     sid.forEach(function(sid) {
         let s = song_data.get(sid)
         s.addFeature(features[count])
@@ -70,6 +71,7 @@ Song.create = (sid) => {
 }
 
 Song.createSongs = (songs) => {
+    console.log("creating new songs in db")
     songs.forEach(function(sid) {
         let song = new Song(sid)
         song_data.set(sid, song);
