@@ -1,5 +1,6 @@
 :root {
-    --spotify-green: rgb(46, 204, 113)
+    --spotify-green: rgb(46, 204, 113);
+    --spotify-pink: rgb(204, 46, 138)
 }
 
 * {
@@ -208,6 +209,20 @@ textarea.user-search-field {
     color: white;
 }
 
+.canvas-container{
+    width: 80%;
+    height: 80%;
+}
+
+.song-bubble {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: var(--spotify-green) 3px solid;
+}
+
 :disabled {
     cursor: not-allowed;
     filter: grayscale(100%);
@@ -215,12 +230,12 @@ textarea.user-search-field {
 
 .animated-exit {
     animation-name: slide-out;
-    animation-duration: 2s;
+    animation-duration: 1s;
 }
 
 .animated-entry {
     animation-name: slide-in;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
@@ -254,7 +269,7 @@ textarea.user-search-field {
 }
 
 .spin-on-load{
-    animation: spin 2s infinite forwards;
+    animation: spin 1s 3 forwards;
 }
 
 @keyframes fade-to-green {

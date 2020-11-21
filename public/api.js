@@ -39,32 +39,24 @@ getPlaylists = async function (username) {
     return playlists
 }
 
-getSongs = async function (playlists) {
+getSongs = async function (playlist) {
     let songs = []
-    for (const pl of playlists) {
-        let offset = 0
-        const limit = 100
-        let trackList = []
-        let i = playlists.indexOf(pl)
-        do {
-            const response = (await axios({
-                method: "get",
-                url: `https://api.spotify.com/v1/playlists/${playlists[i].id}/tracks`,
-                headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
-                params: {
-                    "fields": "items(track.id, track.name)",
-                    "offset": offset,
-                    "limit": limit,
-                }
-            })).data.items
-            trackList.push(...response)
-            offset += limit
+    let offset = 0
+    const limit = 100
+    console.log(playlist)
+    const response = (await axios({
+        method: "get",
+        url: `https://api.spotify.com/v1/playlists/${playlist[0].id}/tracks`,
+        headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
+        params: {
+            "fields": "items(track.id, track.name)",
+            "offset": offset,
+            "limit": limit,
+        }
+    })).data.items
+    songs.push(...response)
 
-        }while(trackList.length < playlists[i].tracks.total)//trackList.length < playlists[i].tracks.total
 
-        songs.push(...trackList)
-
-    }
     songs = songs.map((s, i) => {
         return songs[i].track
     })
@@ -75,27 +67,32 @@ getSongFeatures = async function (songs) {
     let songIDs = (await songs).map(s => s.id)
     let featuresArray = []
 
-    if (songIDs.length > 100) {
-        let chunkedSongIDs = _.chunk(songIDs, 100)
-        chunkedSongIDs.forEach(async (ch, i) => {
-            const features = (await axios({
-                method: "get",
-                url: "https://api.spotify.com/v1/audio-features",
-                headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
-                params: {"ids": chunkedSongIDs[i].join(",")}
-            })).data
-            featuresArray.push(...features.audio_features)
-        })
+    songIDs.splice(100)
 
-    } else {
-        const features = (await axios({
-            method: "get",
-            url: "https://api.spotify.com/v1/audio-features",
-            headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
-            params: {"ids": songIDs.join(",")}
-        })).data.audio_features
-        featuresArray.push(...features)
-    }
+    const features = (await axios({
+        method: "get",
+        url: "https://api.spotify.com/v1/audio-features",
+        headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
+        params: {"ids": songIDs.join(",")}
+    })).data.audio_features
+    featuresArray.push(...features)
+
     return featuresArray
+}
+
+getRecomendation = async function(seedTracks, targetFeatures){
+    const response = await axios({
+        url: "https://api.spotify.com/v1/recommendations",
+        method: "get",
+        headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
+        params: {
+            "seed_tracks" : seedTracks,
+            "target_energy": targetFeatures.energy,
+            "target_valence": targetFeatures.valence,
+            "target_danceability": targetFeatures.danceability,
+            "target_acousticness": targetFeatures.acousticness
+        }
+    })
+    return response.data
 }
 

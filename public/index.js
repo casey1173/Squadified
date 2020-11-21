@@ -42,9 +42,10 @@ let state = {
     user2Included: [],
     user1Songs: [],
     user2Songs: [],
-    user1Results :{},
+    user1Results: {},
     user2Results: {}
 }
+const LABELS = ['Danceability', 'Energy', 'Acousticness', 'Valence'] //state.userXResults is in this order too
 
 /**
  *
@@ -151,7 +152,7 @@ async function renderPlaylistIncluder() {
 
     const heading = document.createElement("h1")
     heading.classList.add("section-heading")
-    heading.appendChild(document.createTextNode("Choose some playlists to represent each user"))
+    heading.appendChild(document.createTextNode("Choose a playlist to represent each user"))
     container.appendChild(heading)
 
     const inputBox = document.createElement("div")
@@ -164,10 +165,9 @@ async function renderPlaylistIncluder() {
         const searchField = document.createElement("textarea")
         searchField.id = "pl-search-" + i
         searchField.classList.add("user-search-field")
-        searchField.placeholder = `include up to 3 of ${i == 1 ? state.user1.display_name : state.user2.display_name}'s playlists...`
+        searchField.placeholder = `Search ${i == 1 ? state.user1.display_name : state.user2.display_name}'s playlists...`
         searchField.maxLength = 100
         searchField.addEventListener("input", (e) => {
-            inputContainer.querySelectorAll(".playlist-list").forEach(e => e.remove())
             renderMatchingPlaylists(e.target)
         })
 
@@ -201,23 +201,27 @@ async function renderPlaylistIncluder() {
 }
 
 async function renderMatchingPlaylists(textArea) {
-
+    const user = textArea.id.split("-")[2]
+    const included = state["user" + user + "Included"]
+    if (included.length > 0) {
+        return
+    }
     textArea.parentNode.querySelectorAll(".playlist-list, .included-list").forEach(e => e.remove())
 
     const parent = textArea.parentNode
-    const user = textArea.id.split("-")[2]
+
     let searchTerm = textArea.value
     searchTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-    const included = state["user" + user + "Included"]
+
     const regexp = new RegExp(searchTerm, "i")
 
     const matchList = document.createElement("div")
     const playlists = user == 1 ? await state.user1Playlists : await state.user2Playlists
     let matches = playlists.filter(pl => regexp.test(pl.name) && !included.includes(pl))
-    if (matches.length > 3) {
-        matches = matches.splice(0, 3)
+    if (matches.length > 5) {
+        matches = matches.splice(0, 5)
     }
-    if (textArea.value.length == 0) {
+    if (textArea.value.length == 0 || included.length > 0) {
         matches = []
     }
 
@@ -237,33 +241,36 @@ async function renderPlaylistItem(playlist, parent) {
 
     const user = parent.id.split("-")[2]
     const included = state["user" + user + "Included"]
-    const checked = included.includes(playlist)
 
     const listItem = document.createElement("div")
     listItem.classList.add("list-item")
-    listItem.style.borderColor = checked ? "var(--spotify-green)" : "white"
-    listItem.style.borderWidth = checked ? "4px" : "2px"
+    listItem.style.borderColor = "white"
+    listItem.style.borderWidth = "2px"
     listItem.appendChild(document.createTextNode(playlist.name))
     const addPLButton = document.createElement("div")
     addPLButton.classList.add("add-pl-butt")
 
     addPLButton.addEventListener("click", (e) => {
-        if (checked) {
+        if (included.length > 0) {
             included.splice(included.indexOf(playlist), 1)
-        } else if (included.length == 3) {
-            return
         } else {
             included.push(playlist)
+            e.currentTarget.parentNode.parentNode.childNodes.forEach(n => {
+                if (n != e.currentTarget.parentNode) {
+                    n.classList.add("fade-exit")
+                }
+            })
+            e.currentTarget.childNodes[0].src = "./checkbox.png"
+            e.currentTarget.parentNode.style.borderColor = "var(--spotify-green)"
         }
-        listItem.parentNode.remove()
+        //listItem.parentNode.remove()
         renderMatchingPlaylists(document.getElementById("pl-search-" + user))
         document.getElementById("pl-search-" + user).focus()
+        console.log(state)
     })
-    if (!checked && included.length == 3) {
-        addPLButton.style.cursor = "not-allowed"
-    }
+
     const checkboxIcon = document.createElement("img")
-    checkboxIcon.src = checked ? "./checkbox.png" : "./empty-checkbox.png"
+    checkboxIcon.src = "./empty-checkbox.png"
     addPLButton.appendChild(checkboxIcon)
     listItem.appendChild(addPLButton)
     parent.appendChild(listItem)
@@ -314,22 +321,96 @@ async function renderUserProfile(username, parent) {
     return userObject
 }
 
-
-async function renderResults(){
+async function loadResults() {
     const modal = document.getElementById("modal-screen")
     const loadingLP = document.createElement("img")
     loadingLP.classList.add("animated-entry", "loading-lp")
     loadingLP.src = "./loading-LP.PNG"
     modal.appendChild(loadingLP)
-    console.log(state)
 
-    const user1AvgFeatures = getAvgFeatures(await getSongFeatures( await getSongs(state.user1Included)))
-    console.log(user1AvgFeatures)
+    state.user1Songs = await getSongs(state.user1Included)
+    const u1SongFeatures = await getSongFeatures(state.user1Songs)
+    const user1AvgFeatures = await getAvgFeatures(u1SongFeatures)
+    state.user1Results = LABELS.map(l => user1AvgFeatures[l.toLowerCase()])
+
+    state.user2Songs = await getSongs(state.user2Included)
+    const u2SongFeatures = await getSongFeatures(state.user2Songs)
+    const user2AvgFeatures = await getAvgFeatures(u2SongFeatures)
+    state.user2Results = LABELS.map(l => user2AvgFeatures[l.toLowerCase()])
 
 }
 
-async function getAvgFeatures(featuresArray){
-    const numSongs = featuresArray.length
+async function renderResults() {
+
+    const canvasContainer = document.createElement("div")
+    canvasContainer.classList.add("canvas-container", "animated-entry")
+    const canvas = document.createElement("canvas")
+    const chart = new Chart(canvas, {
+        // The type of chart we want to create
+        type: 'bar',
+
+        // The data for our dataset
+        data: {
+            labels: LABELS.map(l => l == "Valence" ? "Positivity" : l),
+            datasets: [
+                {
+                    label: state.user1.display_name,
+                    backgroundColor: 'rgb(204, 46, 138)',
+                    borderColor: 'rgb(204, 46, 138)',
+                    data: state.user1Results
+                },
+                {
+                    label: state.user2.display_name,
+                    backgroundColor: 'rgb(46, 204, 113)',
+                    borderColor: 'rgb(46, 204, 113)',
+                    data: state.user2Results
+                }]
+        },
+        // Configuration options go here
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: 1
+                    }
+                }]
+            }
+        }
+    })
+    canvasContainer.appendChild(canvas)
+    document.getElementById("modal-screen").appendChild(canvasContainer)
+
+    renderRecommendations()
+
+}
+
+async function renderRecommendations(parent){
+    const seedTracks = _.sampleSize(state.user1Songs.map(s => s.id), 2).join(",") + "," + _.sampleSize(state.user2Songs.map(s => s.id), 2).join(",")
+    const targetFeatures = {}
+    for (let i = 0; i < LABELS.length; i++) {
+        targetFeatures[LABELS[i].toLowerCase()] = parseFloat(((parseFloat(state.user1Results[i]) + parseFloat(state.user2Results[i]))/2).toPrecision(2))
+    }
+    const recRes = await getRecomendation(seedTracks, targetFeatures)
+    renderSongBubble(recRes.tracks[0])
+
+}
+
+async function renderSongBubble(song){
+    console.log(song)
+    const artistNames = song.artists.map(a => a.name).join(", ")
+    const songName = song.name
+    const imageURL = song.album.images[song.album.images.length - 1]
+
+    const sBubble = document.createElement("div")
+    sBubble.classList.add("song-bubble")
+
+}
+
+async function getAvgFeatures(featuresArray) {
+    const fA = await featuresArray
+    const numSongs = fA.length
+    console.dir(fA)
     let avgFeatures = {
         danceability: 0,
         energy: 0,
@@ -338,23 +419,26 @@ async function getAvgFeatures(featuresArray){
         valence: 0,
         tempo: 0,
     }
-    for (const f in featuresArray){
-        for (const k in Object.keys(avgFeatures)){
-            avgFeatures.k += f.k
-        }
-    }
-    for (const k in Object.keys(avgFeatures)){
-        avgFeatures.k = avgFeatures.k / numSongs
-    }
+    const keys = Object.keys(avgFeatures)
+
+    fA.forEach(f => {
+        keys.forEach((key) => {
+            avgFeatures[key] += f[key]
+        })
+    })
+
+    keys.forEach(key => {
+        avgFeatures[key] = (avgFeatures[key] / numSongs).toPrecision(2)
+    })
     return avgFeatures
 }
 
-window.onload = async function(){
+window.onload = async function () {
     attachModal()
-    renderUserSelector()
-    //state.user1Playlists = getPlaylists("216b2zmcnk3bprifcfvctpfoq")
-    //state.user2Playlists = getPlaylists("renreynolds12")
-    //renderPlaylistIncluder()
+    //renderUserSelector()
+    state.user1Playlists = getPlaylists("216b2zmcnk3bprifcfvctpfoq")
+    state.user2Playlists = getPlaylists("renreynolds12")
+    renderPlaylistIncluder()
 
 }
 
@@ -377,9 +461,15 @@ window.addEventListener("animationend", (e) => {
         renderPlaylistIncluder()
     }
     if (e.path[0].id == "playlist-select-container" && e.animationName == "slide-out") {
-        renderResults()
+        loadResults()
     }
-    if(e.path[0].classList.contains("loading-lp") && e.animationName == "slide-in"){
+    if (e.path[0].classList.contains("loading-lp") && e.animationName == "slide-in") {
         document.getElementsByClassName("loading-lp")[0].classList.replace("animated-entry", "spin-on-load")
+    }
+    if (e.path[0].classList.contains("loading-lp") && e.animationName == "spin") {
+        document.getElementsByClassName("loading-lp")[0].classList.replace("spin-on-load", "animated-exit")
+    }
+    if (e.path[0].classList.contains("loading-lp") && e.animationName == "slide-out") {
+        renderResults()
     }
 })
