@@ -35,8 +35,8 @@ Song.addFeatures = (sid, duration, key, mode, acousticness, danceability, energy
 }
 
 
-Song.create = (sid, name) => {
-    let s = new Song(id, name)
+Song.create = (sid, name, artist) => {
+    let s = new Song(id, name, artist)
     song_data.set(s.sid, s);
     return s;
 }
