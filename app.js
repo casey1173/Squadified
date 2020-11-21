@@ -122,6 +122,7 @@ app.get("/songs", (req, res) => {
             Song.createSongs(spotifySongs)
             Song.addFeatures(spotifySongs, features)
             songFeatures.push(...features)
+            res.send(songFeatures)
         })
         /*
         const features = (axios({
@@ -135,7 +136,7 @@ app.get("/songs", (req, res) => {
         storedSongs.push(...features)*/
     }
     //console.log("returned features list: ", storedSongs)
-    res.send(songFeatures)
-    return songFeatures;    
+    
+    //return songFeatures;    
     //res.json(s);
 });
