@@ -113,7 +113,7 @@ app.get("/songs", (req, res) => {
         const features = (axios({
             method: "get",
             url: "https://api.spotify.com/v1/audio-features",
-            headers: req.headers,
+            headers: req.headers.authorization,
             params: {"ids": spotifySongs.join(",")}
         })).data.audio_features
         Song.createSongs(spotifySongs)
