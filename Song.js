@@ -70,11 +70,11 @@ Song.create = (sid) => {
 }
 
 Song.createSongs = (songs) => {
-    songs.forEach(function(song) {
-        let s = new Song(song.id)
-        song_data.set(s.sid, s);
+    songs.forEach(function(sid) {
+        let song = new Song(sid)
+        song_data.set(sid, song);
     })
-    return s;
+    return song;
 }
 
 Song.findByID = (sid) => {

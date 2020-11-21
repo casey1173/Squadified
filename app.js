@@ -94,12 +94,12 @@ app.get("/songs", (req, res) => {
     let sIds = ((req.query).ids).split(',');
     //console.log(sIds);
     //let sNames = ((req.query).names).split(',');
-    let storedSongs = [];
+    let songFeatures = [];
     let spotifySongs = [];
     sIds.forEach(function(sid) {
         songData = Song.findByID(sid);
         if (songData != null) {
-            storedSongs.push(songData.features)
+            songFeatures.push(songData.features)
         } else {
             spotifySongs.push(sid);
         }
@@ -121,7 +121,7 @@ app.get("/songs", (req, res) => {
             console.log("spotifySongs: ", spotifySongs)
             Song.createSongs(spotifySongs)
             Song.addFeatures(spotifySongs, features)
-            storedSongs.push(...features)
+            songFeatures.push(...features)
         })
         /*
         const features = (axios({
@@ -135,7 +135,7 @@ app.get("/songs", (req, res) => {
         storedSongs.push(...features)*/
     }
     //console.log("returned features list: ", storedSongs)
-    res.send(storedSongs)
-    return storedSongs;    
+    res.send(songFeatures)
+    return songFeatures;    
     //res.json(s);
 });
