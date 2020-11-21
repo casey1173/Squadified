@@ -110,15 +110,26 @@ app.get("/songs", (req, res) => {
     console.log(spotifySongs.join(","))
 
     if (spotifySongs != []) {
+
+        axios.get("https://api.spotify.com/v1/audio-features", {
+            headers: req.headers.authorization,
+            params: {"ids": spotifySongs.join(",")}
+        }).then((response) => {
+            const features = response.data.audio_features;
+            Song.createSongs(spotifySongs)
+            Song.addFeatures(spotifySongs, features)
+            storedSongs.push(...features)
+        })
+        /*
         const features = (axios({
             method: "get",
             url: "https://api.spotify.com/v1/audio-features",
             headers: req.headers.authorization,
             params: {"ids": spotifySongs.join(",")}
-        })).data.audio_features
+        })).data.audio_features 
         Song.createSongs(spotifySongs)
         Song.addFeatures(spotifySongs, features)
-        storedSongs.push(...features)
+        storedSongs.push(...features)*/
     }
     //console.log("returned features list: ", storedSongs)
     res.send(storedSongs)
