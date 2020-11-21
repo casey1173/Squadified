@@ -74,16 +74,16 @@ getSongFeatures = async function (songs) {
     console.log(songIDs)
     console.log(songNames)
     
-    var features = (await axios({
+    const features = (await axios({
         method: "get",
         url: "https://www.squadified.com/songs",
         headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
         params: {"ids": songIDs.join(",")}
                  //"names": songNames.join(",")}
-    }))
-    console.log("complete response from server: ", features)
-    features = features.data;
-    console.log("features/data given by server: ", features)
+    })).catch((err)=>console.log(err));
+    //console.log("complete response from server: ", features)
+    var features2 = features.data;
+    console.log("features/data given by server: ", features2)
     /*
     const features = (await axios({
         method: "get",
@@ -92,7 +92,7 @@ getSongFeatures = async function (songs) {
         params: {"ids": songIDs.join(",")}
     })).data.audio_features
     */
-    featuresArray.push(...features)
+    featuresArray.push(...features2)
     
     return featuresArray
 }
