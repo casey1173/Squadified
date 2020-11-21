@@ -74,8 +74,8 @@ app.get("/example", (req, res) => {
 })
 
 app.post("/song", (req, res) => {
-    let {sid, name, artist} = req.body;
-    let s = Song.create(req.body.sid, req.body.name, red.body.artist);
+    let {sid, name, artist} = req.data;
+    let s = Song.create(req.data.sid, req.data.name, red.data.artist);
     if (s == null) {
         res.status(400).send("Bad Request");
         return;
