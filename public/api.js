@@ -82,15 +82,6 @@ getSongFeatures = async function (songs) {
                  //"names": songNames.join(",")}
     })).data
     
-   /*
-   const features = (await axios({
-    method: "post",
-    url: "https://www.squadified.com/songs",
-    headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
-    data: {"ids": songIDs,
-            "names": songNames}
-    })).data
-    */
     console.log("features given by server: ", features)
     /*
     const features = (await axios({

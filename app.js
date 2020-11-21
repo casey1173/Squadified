@@ -85,14 +85,14 @@ app.post("/song", (req, res) => {
 })
 
 app.get("/songs", (req, res) => {
-    console.log("testing hello can u see me")
+    //console.log("testing hello can u see me")
     //console.log(req.params)
     //console.log(req.query)
-    console.log("testing hello can u see me too ?")
+    //console.log("testing hello can u see me too ?")
     //console.log("songs req params: ", req.params);
     //console.log("songs req query: ", req.query);
     let sIds = ((req.query).ids).split(',');
-    console.log(sIds);
+    //console.log(sIds);
     //let sNames = ((req.query).names).split(',');
     let storedSongs = [];
     let spotifySongs = [];
@@ -106,6 +106,9 @@ app.get("/songs", (req, res) => {
     })
     //console.log("stored songs: ", storedSongs)
     //console.log("spotify songs: ", spotifySongs)
+    console.log(req.headers);
+    console.log(spotifySongs.join(","))
+
     if (spotifySongs != []) {
         const features = (axios({
             method: "get",
