@@ -106,8 +106,8 @@ app.get("/songs", (req, res) => {
     })
     //console.log("stored songs: ", storedSongs)
     //console.log("spotify songs: ", spotifySongs)
-    console.log(req.headers);
-    console.log(spotifySongs.join(","))
+    //console.log(req.headers);
+    //console.log(spotifySongs.join(","))
 
     if (spotifySongs != []) {
 
@@ -115,7 +115,9 @@ app.get("/songs", (req, res) => {
             headers: req.headers.authorization,
             params: {"ids": spotifySongs.join(",")}
         }).then((response) => {
+            console.log("spotify response: ", response)
             const features = response.data.audio_features;
+            console.log("spotify features: ", response)
             Song.createSongs(spotifySongs)
             Song.addFeatures(spotifySongs, features)
             storedSongs.push(...features)
