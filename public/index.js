@@ -427,6 +427,7 @@ async function renderRecommendations(){
 
 async function renderSongBubble(song){
     console.log(song)
+    uploadSong(song)
     const artistNames = song.artists.map(a => a.name).join(", ")
     const songName = song.name
     const imageURL = song.album.images[0].url
@@ -488,6 +489,27 @@ async function getAvgFeatures(featuresArray) {
         avgFeatures[key] = (avgFeatures[key] / numSongs).toPrecision(2)
     })
     return avgFeatures
+}
+
+async function uploadSong(song) {
+    const artistNames = song.artists.map(a => a.name).join(", ");
+    const songName = song.name;
+    const songId = song.id;
+    const song = await axios({
+        method: 'post',
+        url: 'https://squadified.com/song',
+        data: {
+            sid: songId,
+            name: songName,
+            artist: artistNames
+        }
+    }).catch((err) => {
+        console.log(err);
+    });
+}
+
+async function addSongFeatures(song) {
+
 }
 
 window.onload = async function () {

@@ -7,8 +7,15 @@ const axios = require("axios")
 const qs = require("querystring")
 const cors = require("cors")()
 
+const Song = require('./Song.js');
+
+const bodyParser = require('body-parser');
+
+
 const app = express()
 //#endregion
+app.use(bodyParser.json());
+
 
 const spotifyClientID = "e877e6ffc92f4caca0352895fa830224"
 const spotifySecret = "8bde01a0227440f6910fe671615e03c8"
@@ -63,3 +70,22 @@ app.get("/token", (req, res) => {
 app.get("/example", (req, res) => {
     res.send("example ajax method")
 })
+
+app.post("/song", (req, res) => {
+    let {sid, name, artist} = req.body;
+    let s = Song.create(req.body.sid, req.body.name, red.body.artist);
+    if (s == null) {
+        res.status(400).send("Bad Request");
+        return;
+    }
+    return res.json(s);
+})
+
+app.get("/song/:id", (req, res) => {
+    let s = Song.findByID(req.params.id);
+    if (s == null) {
+        res.status(404).send("Song not found");
+        return;
+    }
+    res.json(s);
+});
