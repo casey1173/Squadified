@@ -115,9 +115,10 @@ app.get("/songs", (req, res) => {
             headers: {"Authorization": req.headers.authorization},
             params: {"ids": spotifySongs.join(",")}
         }).then((response) => {
-            console.log("spotify response: ", response)
+            //console.log("spotify response: ", response)
             const features = response.data.audio_features;
-            console.log("spotify features: ", response)
+            console.log("spotify features: ", features)
+            console.log("spotifySongs: ", spotifySongs)
             Song.createSongs(spotifySongs)
             Song.addFeatures(spotifySongs, features)
             storedSongs.push(...features)
