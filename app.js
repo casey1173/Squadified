@@ -86,20 +86,19 @@ app.post("/song", (req, res) => {
 
 app.get("/songs", (req, res) => {
 
-    console.log("songs req params: ", req.params);
-    console.log("songs req query: ", req.query);
-    let sIds = ((req.query).ids) //.split(',');
+    //console.log("songs req params: ", req.params);
+    //console.log("songs req query: ", req.query);
+    let sIds = ((req.params).ids).split(',');
     //let sNames = ((req.query).names).split(',');
     let storedSongs = [];
     let spotifySongs = [];
-    count = 0;
     sIds.forEach(function(sid) {
         songData = Song.findByID(sid);
         if (songData != null) {
             storedSongs.push(songData.features)
             count = count+1;
         } else {
-            spotifySongs.push([sid, sNames[count]]);
+            spotifySongs.push(sid);
             count = count+1;
         }
     })

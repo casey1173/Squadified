@@ -63,15 +63,15 @@ Song.addFeatures = (sid, features) => {
     */
 }
 
-Song.create = (sid, name) => {
-    let s = new Song(id, name)
+Song.create = (sid) => {
+    let s = new Song(id)
     song_data.set(s.sid, s);
     return s;
 }
 
 Song.createSongs = (songs) => {
     songs.forEach(function(song) {
-        let s = new Song(song.id, song.name)
+        let s = new Song(song.id)
         song_data.set(s.sid, s);
     })
     return s;
