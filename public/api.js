@@ -73,7 +73,7 @@ getSongFeatures = async function (songs) {
     songNames.splice(100)
     console.log(songIDs)
     console.log(songNames)
-    /*
+    
     const features = (await axios({
         method: "get",
         url: "https://www.squadified.com/songs",
@@ -81,7 +81,8 @@ getSongFeatures = async function (songs) {
         params: {"ids": songIDs.join(",")}
                  //"names": songNames.join(",")}
     })).data
-    */
+    
+   /*
    const features = (await axios({
     method: "post",
     url: "https://www.squadified.com/songs",
@@ -89,7 +90,7 @@ getSongFeatures = async function (songs) {
     data: {"ids": songIDs,
             "names": songNames}
     })).data
-
+    */
     console.log("features given by server: ", features)
     /*
     const features = (await axios({
