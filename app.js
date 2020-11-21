@@ -86,6 +86,9 @@ app.post("/song", (req, res) => {
 
 app.get("/songs", (req, res) => {
     console.log("testing hello can u see me")
+    console.log(req.params)
+    console.log(req.query)
+    console.log("testing hello can u see me too ?")
     //console.log("songs req params: ", req.params);
     //console.log("songs req query: ", req.query);
     let sIds = ((req.params).ids).split(',');
