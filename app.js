@@ -134,6 +134,9 @@ app.get("/songs", (req, res) => {
         Song.createSongs(spotifySongs)
         Song.addFeatures(spotifySongs, features)
         storedSongs.push(...features)*/
+    } else {
+        console.log("all songs in database already")
+        res.send(songFeatures)
     }
     //console.log("returned features list: ", storedSongs)
     
