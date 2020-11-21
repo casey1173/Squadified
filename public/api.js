@@ -40,6 +40,8 @@ getPlaylists = async function (username) {
 }
 
 getSongs = async function (playlist) {
+
+    //test if songs exist in database and return; if not, pull from spotify
     let songs = []
     let offset = 0
     const limit = 100

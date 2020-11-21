@@ -44,7 +44,7 @@ Song.create = (sid, name, artist) => {
 Song.findByID = (sid) => {
     let sData = song_data.get(sid);
     if (sData != null) {
-        //return new Song(bdata.id, bdata.title, bdata.price, bdata.authors);
+        //return new Song();
         return sDada;
     }
     return null;

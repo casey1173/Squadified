@@ -427,7 +427,7 @@ async function renderRecommendations(){
 
 async function renderSongBubble(song){
     console.log(song)
-    //uploadSong(song)
+    uploadSong(song)
     const artistNames = song.artists.map(a => a.name).join(", ")
     const songName = song.name
     const imageURL = song.album.images[0].url
