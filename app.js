@@ -101,14 +101,19 @@ app.get("/songs", (req, res) => {
     sIds.forEach(function(sid) {
         songData = Song.findByID(sid);
         if (songData != null) {
-            console.log("adding songs from database!")
-            songFeatures.push(songData.features)
+            //console.log("adding songs from database!")
+            if (songData.features != null) {
+                songFeatures.push(songData.features)
+            } else {
+                spotifySongs.push(sid);
+            }
             count = count+1;
             if (count == 3) {
                 console.log("songFeatures from database: ", songFeatures)
             }
             
         } else {
+            console.log(sid);
             spotifySongs.push(sid);
         }
     })
