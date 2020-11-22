@@ -48,6 +48,7 @@ Song.addFeatures = (sid, features) => {
         s.addFeature(features[count])
         count = count+1
     })
+    song_data.save();
     /*
     this.duration = features[0]; //length of song in ms
     this.key = features[1]; //estimated overall key of the track

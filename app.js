@@ -119,7 +119,7 @@ app.get("/songs", (req, res) => {
             }
             
         } else {
-            console.log(sid);
+            //console.log(sid);
             spotifySongs.push(sid);
         }
     })
@@ -128,7 +128,7 @@ app.get("/songs", (req, res) => {
     console.log(req.headers.authorization);
     //console.log(spotifySongs.join(","))
 
-    if (spotifySongs != []) {
+    if (spotifySongs.length != 0) {
         axios.get("https://api.spotify.com/v1/audio-features", {
             headers: {"Authorization": req.headers.authorization},
             params: {"ids": spotifySongs.join(",")}
