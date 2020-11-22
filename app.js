@@ -93,6 +93,7 @@ app.get("/songs", (req, res) => {
     //console.log("songs req query: ", req.query);
     let sIds = ((req.query).ids).split(',');
     console.log('testing! Inside /songs')
+    console.log('sIds we are lookin for: ', sIds)
     //console.log(sIds);
     //let sNames = ((req.query).names).split(',');
     let songFeatures = [];
