@@ -90,14 +90,7 @@ app.get("/allsongs", (req, res) => {
 
 
 app.get("/songs", (req, res) => {
-    //console.log("testing hello can u see me")
-    //console.log(req.params)
-    //console.log(req.query)
-    //console.log("testing hello can u see me too ?")
-    //console.log("songs req params: ", req.params);
-    //console.log("songs req query: ", req.query);
     let sIds = ((req.query).ids).split(',');
-    //console.log('testing! Inside /songs')
     //console.log('sIds we are lookin for: ', sIds)
     //console.log(sIds);
     //let sNames = ((req.query).names).split(',');
@@ -106,17 +99,12 @@ app.get("/songs", (req, res) => {
     count = 0;
     sIds.forEach(function(sid) {
         songData = Song.findByID(sid);
-        if (songData != null) {
-            if (songData.features != null) {
-                songFeatures.push(songData.features)
-                if (count == 0) {
-                    console.log("getting song(s) from database!")
-                    count++;
-                }
-            } else {
-                spotifySongs.push(sid);
+        if (songData != null && songData.features != null) {
+            songFeatures.push(songData.features)
+            if (count == 0) {
+                console.log("getting song(s) from database!")
+                count++;
             }
-            
         } else {
             spotifySongs.push(sid);
         }
@@ -131,19 +119,15 @@ app.get("/songs", (req, res) => {
             headers: {"Authorization": req.headers.authorization},
             params: {"ids": spotifySongs.join(",")}
         }).then((response) => {
-            //console.log("spotify response: ", response)
             const features = response.data.audio_features;
-            //console.log("spotify features: ", features)
             console.log("Pulled ",  spotifySongs.length, "songs from Spotify, logging ids & audio features to \\allsongs db")
             songFeatures.push(...features)
-            //console.log("songFeatures from spotify: ", songFeatures)
             songFeatures = songFeatures.filter(function (feat) {
                 return feat != null;
             })
             Song.createSongs(spotifySongs)
             Song.addFeatures(spotifySongs, features)
             res.send(songFeatures)
-            //res.send(songFeatures)
         })
     } else {
         console.log("all songs in database already")
