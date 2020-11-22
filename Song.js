@@ -12,7 +12,7 @@ class Song {
 
     addFeature (features) {
         this.features = features;
-        update()
+        this.update()
     }
 
     update () {
