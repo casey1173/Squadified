@@ -45,7 +45,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="frontend" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -207,12 +207,12 @@
       <screen x="-345" y="-1080" width="2560" height="1050" />
     </state>
     <state x="715" y="-842" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050" timestamp="1605642299401" />
-    <state x="616" y="-296" key="run.anything.popup" timestamp="1605938288318">
-      <screen x="-321" y="-1080" width="2560" height="1050" />
+    <state x="562" y="694" key="run.anything.popup" timestamp="1606070131642">
+      <screen x="0" y="0" width="1536" height="930" />
     </state>
     <state x="616" y="-296" key="run.anything.popup/0.0.1536.930/-321.-1080.2560.1050@-321.-1080.2560.1050" timestamp="1605938288318" />
     <state x="591" y="-297" key="run.anything.popup/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050" timestamp="1605666989302" />
-    <state x="562" y="694" key="run.anything.popup/0.0.1536.930@0.0.1536.930" timestamp="1605756742940" />
+    <state x="562" y="694" key="run.anything.popup/0.0.1536.930@0.0.1536.930" timestamp="1606070131642" />
     <state x="622" y="-853" width="672" height="678" key="search.everywhere.popup" timestamp="1605950316392">
       <screen x="-321" y="-1080" width="2560" height="1050" />
     </state>
