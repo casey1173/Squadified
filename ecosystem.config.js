@@ -2,7 +2,7 @@ module.exports = {
   apps : [{
     script: 'index.js',
     watch: '.',
-    ignore_watch : ["Song.js"],
+    ignore_watch : ["data/song.json"],
   }, {
     script: './service-worker/',
     watch: ['./service-worker']
