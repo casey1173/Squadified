@@ -102,6 +102,7 @@ app.get("/songs", (req, res) => {
         if (songData != null) {
             console.log("adding songs from database!")
             songFeatures.push(songData.features)
+            console.log("songFeatures from database: ", songFeatures)
         } else {
             spotifySongs.push(sid);
         }
@@ -121,6 +122,7 @@ app.get("/songs", (req, res) => {
             //console.log("spotify features: ", features)
             //console.log("spotifySongs: ", spotifySongs)
             songFeatures.push(...features)
+            console.log("songFeatures from spotify: ", songFeatures)
             res.send(songFeatures)
             Song.createSongs(spotifySongs)
             Song.addFeatures(spotifySongs, features)
