@@ -25,12 +25,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d6f2307-3ccd-4a8e-a5e6-8c005e243790" name="Default Changelist" comment="app now starts in the right place (select users)">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_22_2020_12_27_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_22_2020_12_27_PM__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/api.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="6d6f2307-3ccd-4a8e-a5e6-8c005e243790" name="Default Changelist" comment="app now starts in the right place (select users)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
