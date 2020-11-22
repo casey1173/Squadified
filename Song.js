@@ -76,14 +76,16 @@ Song.createSongs = (songs) => {
         let song = new Song(sid)
         song_data.set(sid, song);
     })
-    return song;
+    //return song;
 }
 
 Song.findByID = (sid) => {
+    console.log("trying to get songs from db")
     let sData = song_data.get(sid);
     if (sData != null) {
+        console.log(sData);
         //return new Song();
-        return sDada;
+        return sData;
     }
     return null;
 }
