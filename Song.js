@@ -64,6 +64,10 @@ Song.addFeatures = (sid, features) => {
     */
 }
 
+Song.getSongs = () => {
+    return song_data.data;
+}
+
 Song.create = (sid) => {
     let s = new Song(id)
     song_data.set(s.sid, s);
