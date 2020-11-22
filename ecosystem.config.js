@@ -1,13 +1,15 @@
 module.exports = {
-  apps : [{
-    script: 'index.js',
-    watch: '.',
-    ignore_watch : ["data/song.json"],
-  }, {
-    script: './service-worker/',
-    watch: ['./service-worker']
-  }],
-
+  apps: [{
+    script: "app.js",
+    watch: true,
+    
+    ignore_watch : ["node_modules", "data/song.json"],
+    watch_options: {
+      "followSymlinks": false
+    }
+  }]
+}
+/*
   deploy : {
     production : {
       user : 'SSH_USERNAME',
@@ -21,3 +23,4 @@ module.exports = {
     }
   }
 };
+*/
