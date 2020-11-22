@@ -134,9 +134,12 @@ app.get("/songs", (req, res) => {
             //console.log("spotifySongs: ", spotifySongs)
             songFeatures.push(...features)
             //console.log("songFeatures from spotify: ", songFeatures)
-            res.send(songFeatures)
+            songFeatures = songFeatures.filter(function (feat) {
+                return feat != null;
+            })
             Song.createSongs(spotifySongs)
             Song.addFeatures(spotifySongs, features)
+            res.send(songFeatures)
             //res.send(songFeatures)
         })
         /*
@@ -151,6 +154,9 @@ app.get("/songs", (req, res) => {
         storedSongs.push(...features)*/
     } else {
         console.log("all songs in database already")
+        songFeatures = songFeatures.filter(function (feat) {
+            return feat != null;
+        })
         res.send(songFeatures)
     }
     //console.log("returned features list: ", storedSongs)
