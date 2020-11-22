@@ -446,7 +446,7 @@ async function renderRecommendations(){
     for (let i = 0; i < LABELS.length; i++) {
         targetFeatures[LABELS[i].toLowerCase()] = parseFloat(((parseFloat(state.user1Results[i]) + parseFloat(state.user2Results[i]))/2).toPrecision(2))
     }
-    const recRes = await getRecomendation(seedTracks, targetFeatures)
+    const recRes = await getRecommendation(seedTracks, targetFeatures)
     const bubblesContainer = document.createElement("div")
     bubblesContainer.classList.add("bubbles-container")
 

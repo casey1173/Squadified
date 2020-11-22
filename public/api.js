@@ -89,7 +89,7 @@ getSongFeatures = async function (songs) {
     return featuresArray
 }
 
-getRecomendation = async function(seedTracks, targetFeatures){
+getRecommendation = async function(seedTracks, targetFeatures){
     const response = await axios({
         url: "https://api.spotify.com/v1/recommendations",
         method: "get",
