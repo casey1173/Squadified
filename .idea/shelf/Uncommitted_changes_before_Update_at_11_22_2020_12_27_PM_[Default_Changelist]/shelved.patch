@@ -1,0 +1,172 @@
+Index: public/styles.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>:root {\r\n    --spotify-green: rgb(46, 204, 113);\r\n    --spotify-pink: rgb(204, 46, 138)\r\n}\r\n\r\n* {\r\n    font-family: \"Courier New\";\r\n}\r\n\r\n.info-text {\r\n    color: white;\r\n    font-size: 14pt;\r\n    display: inline;\r\n}\r\n\r\n#h-bar {\r\n    display: flex;\r\n\r\n}\r\n\r\n#modal-screen {\r\n    display: flex;\r\n    flex-direction: column;\r\n    position: fixed;\r\n    justify-content: center;\r\n    align-items: center;\r\n    left: 0;\r\n    top: 0;\r\n    width: 100%;\r\n    height: 100%;\r\n    background-color: rgba(46, 204, 113, 0.9);\r\n    z-index: 1;\r\n}\r\n\r\n#user-select-container {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: start;\r\n    align-items: center;\r\n    width: 800px;\r\n    height: 450px;\r\n    background-color: black;\r\n    border-radius: 5%;\r\n    box-shadow: 10px 10px white;\r\n}\r\n\r\n#playlist-select-container{\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: start;\r\n    align-items: center;\r\n    width: 850px;\r\n    min-height: 650px;\r\n    background-color: black;\r\n    border-radius: 5%;\r\n    box-shadow: 10px 10px white;\r\n}\r\n\r\n.link-box{\r\n    height: 50px;\r\n    padding: 10px;\r\n    margin-bottom: 20px;\r\n    color: black;\r\n    background-color: var(--spotify-green);\r\n    box-shadow: 3px 3px white;\r\n    border-radius: 3px;\r\n    text-align: center;\r\n    display: inline-flex;\r\n    align-items: center;\r\n    font-weight: bold;\r\n    font-size: 14pt;\r\n    text-shadow: 1px 1px white;\r\n}\r\n\r\n.user-input-box {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: space-evenly;\r\n    width: 100%;\r\n    border-color: white;\r\n    border-width: 3px;\r\n}\r\n\r\n.input-container {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n\r\n}\r\n\r\n.user-search-field {\r\n    margin: 5px;\r\n    font-family: \"Courier New\";\r\n    width: 100%;\r\n    background-color: black;\r\n    color: white;\r\n    font-size: 16pt;\r\n}\r\n\r\ntextarea.user-search-field {\r\n    resize: none;\r\n    width: 350px;\r\n    font-size: 12pt;\r\n}\r\n\r\n.get-user-butt {\r\n    margin: 5px;\r\n    font-size: 14pt;\r\n    background-color: var(--spotify-green);\r\n    width: 100%;\r\n    cursor: pointer;\r\n}\r\n\r\n.add-pl-butt {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    margin: 4px;\r\n    width: 2.5em;\r\n    height: 2.5em;\r\n    border-radius: 5px;\r\n    background-color: var(--spotify-green);\r\n    cursor: pointer;\r\n}\r\n\r\n.add-pl-butt > img {\r\n    width: 3em;\r\n    height: 3em;\r\n    filter: invert(100%);\r\n}\r\n\r\n.user-profile {\r\n    display: flex;\r\n    align-content: center;\r\n    padding: 5px;\r\n    margin: 5px;\r\n    border-width: 3px;\r\n    border-color: white;\r\n    border-style: solid;\r\n    border-radius: 5px;\r\n    box-shadow: 5px 5px var(--spotify-green);\r\n    font-size: 14pt;\r\n    font-weight: bold;\r\n}\r\n\r\n.user-avi {\r\n    margin: 10px;\r\n    width: 100px;\r\n    height: 100px;\r\n    border-radius: 5px;\r\n}\r\n\r\n.user-search-label {\r\n    color: white;\r\n    font-family: \"Courier New\";\r\n}\r\n\r\n.section-heading {\r\n    font-family: \"Courier New\";\r\n    color: white;\r\n    text-shadow: 2px 2px forestgreen;\r\n    text-align: center;\r\n    padding-left: 15px;\r\n    padding-right: 15px;\r\n}\r\n\r\n.next-button {\r\n    text-align: center;\r\n    margin: 20px;\r\n    border-radius: 10px;\r\n    width: 300px;\r\n    height: 80px;\r\n    background-color: black;\r\n    box-shadow: 10px 10px white;\r\n    cursor: pointer;\r\n\r\n}\r\n\r\n.playlist-list {\r\n    max-width: 450px;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: flex-start;\r\n}\r\n\r\n.included-list {\r\n    width: 450px;\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-self: flex-end;\r\n    border-radius: 5px;\r\n    border-color: var(--spotify-green);\r\n    border-width: 3px;\r\n    border-style: solid;\r\n}\r\n\r\n.list-item {\r\n    display: flex;\r\n    align-content: center;\r\n    justify-content: space-between;\r\n    margin: 5px;\r\n    padding: 4px;\r\n    max-height: 90px;\r\n    width: 340px;\r\n    border-radius: 5px;\r\n    border-style: solid;\r\n    border-width: 2px;\r\n    border-color: white;\r\n    color: white;\r\n}\r\n\r\n.canvas-container{\r\n    display: flex;\r\n    flex-direction: row;\r\n    align-items: center;\r\n\r\n    width: 100%;\r\n}\r\n\r\n.bubbles-container{\r\n    align-self: flex-end ;\r\n    margin-top: 100px;\r\n    width: 100%;\r\n    height: 300px;\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: space-between;\r\n    align-content: center;\r\n    overflow-x: auto;\r\n    overflow-y: hidden;\r\n    flex-wrap: nowrap;\r\n    scrollbar-color: var(--spotify-green) rgba(0,0,0,0);\r\n}\r\n*::-webkit-scrollbar{\r\n    width: 12px;\r\n}\r\n\r\n*::-webkit-scrollbar-track{\r\n    background: transparent;\r\n}\r\n*::-webkit-scrollbar-thumb{\r\n    border-radius: 15px;\r\n    background-color: var(--spotify-pink);\r\n}\r\n\r\n.song-bubble {\r\n    margin: 5px;\r\n    width: 250px;\r\n    height: 250px;\r\n    flex: 0 0 auto;\r\n    border: var(--spotify-green) 3px solid;\r\n    border-radius: 125px;\r\n}\r\n\r\n.song-bubble:hover{\r\n    cursor: pointer;\r\n}\r\n.song-bubble img{\r\n    border-radius: 75px;\r\n    position: fixed;\r\n    top: 50px;\r\n    left: 50px;\r\n    width: 150px;\r\n    height: 150px;\r\n}\r\n\r\n.circ-text-container{\r\n    position: fixed;\r\n    top: -10px;\r\n    left: 125px;\r\n    color: white;\r\n    width: 250px;\r\n    height: 250px;\r\n    font-weight: bold;\r\n}\r\n\r\n\r\n:disabled {\r\n    cursor: not-allowed;\r\n    filter: grayscale(100%);\r\n}\r\n\r\n.animated-exit {\r\n    animation-name: slide-out;\r\n    animation-duration: 1s;\r\n}\r\n\r\n.animated-entry {\r\n    animation-name: slide-in;\r\n    animation-duration: 1s;\r\n    animation-iteration-count: 1;\r\n    animation-fill-mode: forwards;\r\n}\r\n\r\n.fade-entry {\r\n    animation-name: fade-in;\r\n    animation-duration: 3s;\r\n    animation-iteration-count: 1;\r\n    animation-fill-mode: forwards;\r\n}\r\n\r\n.fade-exit {\r\n    animation-name: fade-out;\r\n    animation-duration: 1s;\r\n    animation-iteration-count: 1;\r\n    animation-fill-mode: forwards;\r\n}\r\n\r\n.become-black{\r\n    animation: fade-to-black 2s 1 forwards;\r\n}\r\n\r\n.become-green{\r\n    animation: fade-to-green 2s 1 forwards;\r\n}\r\n\r\n.loading-lp{\r\n    width: 400px;\r\n    height: 400px;\r\n    filter: invert(100%);\r\n}\r\n\r\n.spin-on-load{\r\n    animation: spin 1s 3 forwards;\r\n}\r\n\r\n.spin-forever{\r\n    animation: spin 30s infinite forwards;\r\n    animation-timing-function: linear;\r\n}\r\n\r\n@keyframes fade-to-green {\r\n    100%{background-color: var(--spotify-green)}\r\n}\r\n\r\n@keyframes fade-to-black {\r\n    100%{background-color: black}\r\n}\r\n\r\n\r\n@keyframes slide-in {\r\n    0%{transform: translateY(-100vh)}\r\n    100%{transform: translateY(0px)}\r\n}\r\n\r\n@keyframes  slide-out {\r\n    0%{transform: translateX(0px)}\r\n    100% {transform: translateX(-110vw)}\r\n}\r\n\r\n@keyframes fade-in {\r\n    0%{opacity: 0}\r\n    100%{opacity: 1}\r\n}\r\n\r\n@keyframes fade-out {\r\n    0%{opacity: 1}\r\n    100%{opacity: 0}\r\n}\r\n\r\n@keyframes spin {\r\n    0%{transform: rotateZ(0deg)}\r\n    100%{transform: rotateZ(360deg)}\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- public/styles.css	(revision 533e2dd306710ce939beff8a2665ac643c7070bd)
++++ public/styles.css	(date 1605998609701)
+@@ -212,7 +212,7 @@
+ .canvas-container{
+     display: flex;
+     flex-direction: row;
+-    align-items: center;
++    align-items: flex-end;
+ 
+     width: 100%;
+ }
+@@ -225,7 +225,7 @@
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+-    align-content: center;
++    align-items: center;
+     overflow-x: auto;
+     overflow-y: hidden;
+     flex-wrap: nowrap;
+@@ -301,7 +301,7 @@
+ 
+ .fade-exit {
+     animation-name: fade-out;
+-    animation-duration: 1s;
++    animation-duration: 0.5s;
+     animation-iteration-count: 1;
+     animation-fill-mode: forwards;
+ }
+Index: public/api.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>currToken = undefined\r\ngetCurrToken = async function () {\r\n    if (currToken == undefined || Date.now() >= currToken[\"expiresAt\"]) {\r\n        let res = await axios.get(\"https://www.squadified.com/token\")\r\n        currToken = res.data\r\n        return currToken\r\n    } else {\r\n        return currToken\r\n    }\r\n}\r\n\r\ngetUser = async function (username) {\r\n    userObject = (await axios({\r\n        method: \"get\",\r\n        url: `https://api.spotify.com/v1/users/${username}`,\r\n        headers: {\"Authorization\": `Bearer ${(await getCurrToken()).code}`}\r\n    })).data\r\n\r\n    return userObject\r\n}\r\n\r\ngetPlaylists = async function (username) {\r\n\r\n    let playlists = []\r\n    let offset = 0\r\n    const limit = 20\r\n\r\n    do {\r\n        playlistResponse = (await axios({\r\n            method: \"get\",\r\n            url: `https://api.spotify.com/v1/users/${username}/playlists`,\r\n            headers: {\"Authorization\": `Bearer ${(await getCurrToken()).code}`},\r\n            params: {\"offset\": offset, \"limit\": limit}\r\n        })).data\r\n\r\n        playlists.push(...(playlistResponse.items))\r\n        offset += limit\r\n    } while (playlists.length < playlistResponse.total)\r\n    return playlists\r\n}\r\n\r\ngetSongs = async function (playlist) {\r\n    let songs = []\r\n    let offset = 0\r\n    const limit = 100\r\n    console.log(playlist)\r\n    const response = (await axios({\r\n        method: \"get\",\r\n        url: `https://api.spotify.com/v1/playlists/${playlist[0].id}/tracks`,\r\n        headers: {\"Authorization\": `Bearer ${(await getCurrToken()).code}`},\r\n        params: {\r\n            \"fields\": \"items(track.id, track.name)\",\r\n            \"offset\": offset,\r\n            \"limit\": limit,\r\n        }\r\n    })).data.items\r\n    songs.push(...response)\r\n\r\n\r\n    songs = songs.map((s, i) => {\r\n        return songs[i].track\r\n    })\r\n    return songs\r\n}\r\n\r\ngetSongFeatures = async function (songs) {\r\n    let songIDs = (await songs).map(s => s.id)\r\n    let featuresArray = []\r\n\r\n    songIDs.splice(100)\r\n\r\n    const features = (await axios({\r\n        method: \"get\",\r\n        url: \"https://api.spotify.com/v1/audio-features\",\r\n        headers: {\"Authorization\": `Bearer ${(await getCurrToken()).code}`},\r\n        params: {\"ids\": songIDs.join(\",\")}\r\n    })).data.audio_features\r\n    featuresArray.push(...features)\r\n\r\n    return featuresArray\r\n}\r\n\r\ngetRecomendation = async function(seedTracks, targetFeatures){\r\n    const response = await axios({\r\n        url: \"https://api.spotify.com/v1/recommendations\",\r\n        method: \"get\",\r\n        headers: {\"Authorization\": `Bearer ${(await getCurrToken()).code}`},\r\n        params: {\r\n            \"seed_tracks\" : seedTracks,\r\n            \"target_energy\": targetFeatures.energy,\r\n            \"target_valence\": targetFeatures.valence,\r\n            \"target_danceability\": targetFeatures.danceability,\r\n            \"target_acousticness\": targetFeatures.acousticness\r\n        }\r\n    })\r\n    return response.data\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- public/api.js	(revision 533e2dd306710ce939beff8a2665ac643c7070bd)
++++ public/api.js	(date 1606065936745)
+@@ -56,7 +56,6 @@
+     })).data.items
+     songs.push(...response)
+ 
+-
+     songs = songs.map((s, i) => {
+         return songs[i].track
+     })
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:squadified\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"BRANCH:frontend\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </select>\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"6d6f2307-3ccd-4a8e-a5e6-8c005e243790\" name=\"Default Changelist\" comment=\"app now starts in the right place (select users)\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/public/index.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/public/index.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/public/styles.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/public/styles.css\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"HTML File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"frontend\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1kQjG2k8E6LdAfd7HHXTZaTqtqA\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"DefaultHtmlFileTemplate\" value=\"HTML File\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"editor.preferences.smartKeys\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"6d6f2307-3ccd-4a8e-a5e6-8c005e243790\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1605639609494</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1605639609494</updated>\r\n      <workItem from=\"1605639610560\" duration=\"33064000\" />\r\n      <workItem from=\"1605740988982\" duration=\"52233000\" />\r\n      <workItem from=\"1605906151726\" duration=\"47778000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"using webstorm\">\r\n      <created>1605640437925</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1605640437925</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"frontend complete up until results page. API updates too\">\r\n      <created>1605908312231</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1605908312231</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"added images\">\r\n      <created>1605920796979</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1605920796979</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"app now starts in the right place (select users)\">\r\n      <created>1605920993441</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1605920993441</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"1\">\r\n          <value>\r\n            <State>\r\n              <option name=\"SHOW_ONLY_AFFECTED_CHANGES\" value=\"true\" />\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"roots\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"$PROJECT_DIR$\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"frontend\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_FILTERS\">\r\n      <map>\r\n        <entry key=\"Branch\">\r\n          <value>\r\n            <list>\r\n              <RecentGroup>\r\n                <option name=\"FILTER_VALUES\">\r\n                  <option value=\"frontend\" />\r\n                </option>\r\n              </RecentGroup>\r\n              <RecentGroup>\r\n                <option name=\"FILTER_VALUES\">\r\n                  <option value=\"master\" />\r\n                </option>\r\n              </RecentGroup>\r\n            </list>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"using webstorm\" />\r\n    <MESSAGE value=\"frontend complete up until results page. API updates too\" />\r\n    <MESSAGE value=\"added images\" />\r\n    <MESSAGE value=\"app now starts in the right place (select users)\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"app now starts in the right place (select users)\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"-79\" y=\"-877\" key=\"#Inspections\" timestamp=\"1605658458166\">\r\n      <screen x=\"-345\" y=\"-1080\" width=\"2560\" height=\"1050\" />\r\n    </state>\r\n    <state x=\"-79\" y=\"-877\" key=\"#Inspections/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050\" timestamp=\"1605658458166\" />\r\n    <state x=\"436\" y=\"-910\" key=\"SettingsEditor\" timestamp=\"1605652302406\">\r\n      <screen x=\"-345\" y=\"-1080\" width=\"2560\" height=\"1050\" />\r\n    </state>\r\n    <state x=\"436\" y=\"-910\" key=\"SettingsEditor/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050\" timestamp=\"1605652302406\" />\r\n    <state x=\"257\" y=\"-856\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1605920997464\">\r\n      <screen x=\"-345\" y=\"-1080\" width=\"2560\" height=\"1050\" />\r\n    </state>\r\n    <state x=\"257\" y=\"-856\" key=\"Vcs.Push.Dialog.v2/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050\" timestamp=\"1605920997464\" />\r\n    <state x=\"361\" y=\"198\" key=\"Vcs.Push.Dialog.v2/0.0.1536.930@0.0.1536.930\" timestamp=\"1605640463530\" />\r\n    <state x=\"586\" y=\"379\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2\" timestamp=\"1605640411011\">\r\n      <screen x=\"0\" y=\"0\" width=\"1536\" height=\"930\" />\r\n    </state>\r\n    <state x=\"586\" y=\"379\" key=\"com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.930@0.0.1536.930\" timestamp=\"1605640411011\" />\r\n    <state x=\"654\" y=\"-943\" width=\"586\" height=\"801\" key=\"find.popup\" timestamp=\"1605962665334\">\r\n      <screen x=\"-321\" y=\"-1080\" width=\"2560\" height=\"1050\" />\r\n    </state>\r\n    <state x=\"654\" y=\"-943\" width=\"586\" height=\"801\" key=\"find.popup/0.0.1536.930/-321.-1080.2560.1050@-321.-1080.2560.1050\" timestamp=\"1605962665334\" />\r\n    <state x=\"715\" y=\"-842\" key=\"git4idea.branch.GitSmartOperationDialog\" timestamp=\"1605642299401\">\r\n      <screen x=\"-345\" y=\"-1080\" width=\"2560\" height=\"1050\" />\r\n    </state>\r\n    <state x=\"715\" y=\"-842\" key=\"git4idea.branch.GitSmartOperationDialog/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050\" timestamp=\"1605642299401\" />\r\n    <state x=\"616\" y=\"-296\" key=\"run.anything.popup\" timestamp=\"1605938288318\">\r\n      <screen x=\"-321\" y=\"-1080\" width=\"2560\" height=\"1050\" />\r\n    </state>\r\n    <state x=\"616\" y=\"-296\" key=\"run.anything.popup/0.0.1536.930/-321.-1080.2560.1050@-321.-1080.2560.1050\" timestamp=\"1605938288318\" />\r\n    <state x=\"591\" y=\"-297\" key=\"run.anything.popup/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050\" timestamp=\"1605666989302\" />\r\n    <state x=\"562\" y=\"694\" key=\"run.anything.popup/0.0.1536.930@0.0.1536.930\" timestamp=\"1605756742940\" />\r\n    <state x=\"622\" y=\"-853\" width=\"672\" height=\"678\" key=\"search.everywhere.popup\" timestamp=\"1605950316392\">\r\n      <screen x=\"-321\" y=\"-1080\" width=\"2560\" height=\"1050\" />\r\n    </state>\r\n    <state x=\"622\" y=\"-853\" width=\"672\" height=\"678\" key=\"search.everywhere.popup/0.0.1536.930/-321.-1080.2560.1050@-321.-1080.2560.1050\" timestamp=\"1605950316392\" />\r\n    <state x=\"598\" y=\"-853\" width=\"672\" height=\"678\" key=\"search.everywhere.popup/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050\" timestamp=\"1605817779158\" />\r\n    <state x=\"566\" y=\"201\" width=\"672\" height=\"601\" key=\"search.everywhere.popup/0.0.1536.930@0.0.1536.930\" timestamp=\"1605809828180\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 533e2dd306710ce939beff8a2665ac643c7070bd)
++++ .idea/workspace.xml	(date 1606066029184)
+@@ -20,14 +20,14 @@
+       <path>
+         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+-        <item name="BRANCH:frontend" type="e8cecc67:BranchNodeDescriptor" />
+       </path>
+     </select>
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="6d6f2307-3ccd-4a8e-a5e6-8c005e243790" name="Default Changelist" comment="app now starts in the right place (select users)">
++    <list default="true" id="6d6f2307-3ccd-4a8e-a5e6-8c005e243790" name="Default Changelist" comment="merging frontend into master">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/public/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/public/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/api.js" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/public/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles.css" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -76,7 +76,9 @@
+       <updated>1605639609494</updated>
+       <workItem from="1605639610560" duration="33064000" />
+       <workItem from="1605740988982" duration="52233000" />
+-      <workItem from="1605906151726" duration="47778000" />
++      <workItem from="1605906151726" duration="51836000" />
++      <workItem from="1605998166484" duration="1187000" />
++      <workItem from="1606064748741" duration="716000" />
+     </task>
+     <task id="LOCAL-00001" summary="using webstorm">
+       <created>1605640437925</created>
+@@ -106,7 +108,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1605920993441</updated>
+     </task>
+-    <option name="localTasksCounter" value="5" />
++    <task id="LOCAL-00005" summary="frontend finished">
++      <created>1605964189584</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1605964189584</updated>
++    </task>
++    <option name="localTasksCounter" value="6" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -141,7 +150,7 @@
+                   <entry key="branch">
+                     <value>
+                       <list>
+-                        <option value="frontend" />
++                        <option value="master" />
+                       </list>
+                     </value>
+                   </entry>
+@@ -179,7 +188,8 @@
+     <MESSAGE value="frontend complete up until results page. API updates too" />
+     <MESSAGE value="added images" />
+     <MESSAGE value="app now starts in the right place (select users)" />
+-    <option name="LAST_COMMIT_MESSAGE" value="app now starts in the right place (select users)" />
++    <MESSAGE value="frontend finished" />
++    <option name="LAST_COMMIT_MESSAGE" value="frontend finished" />
+   </component>
+   <component name="WindowStateProjectService">
+     <state x="-79" y="-877" key="#Inspections" timestamp="1605658458166">
+@@ -190,15 +200,17 @@
+       <screen x="-345" y="-1080" width="2560" height="1050" />
+     </state>
+     <state x="436" y="-910" key="SettingsEditor/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050" timestamp="1605652302406" />
+-    <state x="257" y="-856" key="Vcs.Push.Dialog.v2" timestamp="1605920997464">
+-      <screen x="-345" y="-1080" width="2560" height="1050" />
++    <state x="281" y="-856" key="Vcs.Push.Dialog.v2" timestamp="1605964271166">
++      <screen x="-321" y="-1080" width="2560" height="1050" />
+     </state>
++    <state x="281" y="-856" key="Vcs.Push.Dialog.v2/0.0.1536.930/-321.-1080.2560.1050@-321.-1080.2560.1050" timestamp="1605964271166" />
+     <state x="257" y="-856" key="Vcs.Push.Dialog.v2/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050" timestamp="1605920997464" />
+     <state x="361" y="198" key="Vcs.Push.Dialog.v2/0.0.1536.930@0.0.1536.930" timestamp="1605640463530" />
+-    <state x="586" y="379" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605640411011">
++    <state x="586" y="379" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605978981314">
+       <screen x="0" y="0" width="1536" height="930" />
+     </state>
+-    <state x="586" y="379" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.930@0.0.1536.930" timestamp="1605640411011" />
++    <state x="656" y="-652" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.930/-321.-1080.2560.1050@-321.-1080.2560.1050" timestamp="1605964219697" />
++    <state x="586" y="379" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.930@0.0.1536.930" timestamp="1605978981314" />
+     <state x="654" y="-943" width="586" height="801" key="find.popup" timestamp="1605962665334">
+       <screen x="-321" y="-1080" width="2560" height="1050" />
+     </state>
+Index: app.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//#region import modules\r\nconst express = require(\"express\")\r\nconst https = require(\"https\")\r\nconst helmet = require(\"helmet\")\r\nconst fs = require(\"fs\")\r\nconst axios = require(\"axios\")\r\nconst qs = require(\"querystring\")\r\nconst cors = require(\"cors\")()\r\n\r\nconst Song = require('./Song.js');\r\n\r\nconst bodyParser = require('body-parser');\r\n\r\n\r\nconst app = express()\r\n//#endregion\r\napp.use(bodyParser.json());\r\n\r\n\r\nconst spotifyClientID = \"e877e6ffc92f4caca0352895fa830224\"\r\nconst spotifySecret = \"8bde01a0227440f6910fe671615e03c8\"\r\nconst authReq = \"Basic \" + Buffer.from(spotifyClientID + \":\" + spotifySecret).toString(\"base64\")\r\nlet currToken = {}\r\n\r\n\r\nconst sslOptions = {\r\n    //where certbot put our letsencrypt private and public keys\r\n    key: fs.readFileSync(\"/etc/letsencrypt/live/www.squadified.com/privkey.pem\"),\r\n    cert: fs.readFileSync(\"/etc/letsencrypt/live/www.squadified.com/fullchain.pem\")\r\n}\r\n\r\n// setting up a service on the default https port. Pass in our SSL credentials as well as our express app to actually respond to requests\r\nhttps.createServer(sslOptions, app).listen(443)\r\n\r\napp.listen(80) //Have an http port open for first time contact\r\napp.use(helmet.hsts()) //Use helmet http strict transport security to force https\r\n\r\napp.use(express.static(\"/var/www/squadified/public\")) //static files like index.html \r\napp.use(cors)\r\n\r\n\r\nlet updateToken = () => {\r\n    axios(\r\n    {\r\n        url: \"https://accounts.spotify.com/api/token\",\r\n        method: \"post\",\r\n        headers: {\r\n            \"Authorization\": authReq.toString(),\r\n            'Content-Type': 'application/x-www-form-urlencoded',\r\n        },\r\n        data: qs.stringify({\r\n            \"grant_type\": \"client_credentials\"\r\n        })\r\n    })\r\n    .then((response) => {\r\n        currToken.code = response.data.access_token\r\n        currToken.expiresAt = Date.now() + response.data.expires_in * 1000\r\n        console.log(\"fetched new token.\")\r\n    })\r\n    .catch((error) => {\r\n        console.log(error)\r\n    })\r\n}\r\n\r\nupdateToken()\r\nsetInterval(updateToken, 3600 * 1000)\r\n\r\napp.get(\"/token\", (req, res) => {\r\n    res.send(currToken)\r\n})\r\n\r\napp.get(\"/example\", (req, res) => {\r\n    res.send(\"example ajax method\")\r\n})\r\n\r\napp.post(\"/song\", (req, res) => {\r\n    let {sid, name, artist} = req.data;\r\n    let s = Song.create(req.data.sid, req.data.name, red.data.artist);\r\n    if (s == null) {\r\n        res.status(400).send(\"Bad Request\");\r\n        return;\r\n    }\r\n    return res.json(s);\r\n})\r\n\r\napp.get(\"/song/:id\", (req, res) => {\r\n    let s = Song.findByID(req.params.id);\r\n    if (s == null) {\r\n        res.status(404).send(\"Song not found\");\r\n        return;\r\n    }\r\n    res.json(s);\r\n});\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app.js	(revision 533e2dd306710ce939beff8a2665ac643c7070bd)
++++ app.js	(date 1605983615195)
+@@ -90,4 +90,14 @@
+         return;
+     }
+     res.json(s);
++
++    if(song in database){
++        //return song
++    }else {
++        //download song from spotify
++        //add song to database
++        //send song to user
++    }
++
+ });
++

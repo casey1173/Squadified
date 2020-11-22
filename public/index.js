@@ -66,9 +66,15 @@ async function attachModal() {
 async function renderUserSelector() {
     const modal = document.getElementById("modal-screen")
 
+    const logo = document.createElement("img")
+    logo.src = "./logo.png"
+    logo.classList.add("logo", "animated-entry")
+    //logo.alt = "squadified banner logo"
+
     const container = document.createElement("div")
     container.id = "user-select-container"
     container.classList.add("animated-entry")
+
 
     const heading = document.createElement("h1")
     heading.classList.add("section-heading")
@@ -98,17 +104,10 @@ async function renderUserSelector() {
         const searchField = document.createElement("input")
         searchField.classList.add("user-search-field")
         searchField.id = "user-search-field-" + i
-
-
-        const getButt = document.createElement("button")
-        getButt.id = "get-user-button-" + i
-        getButt.classList.add("get-user-butt")
-        getButt.appendChild(document.createTextNode("Get User " + i))
-        getButt.addEventListener("click", async (e) => {
+        searchField.addEventListener("input", _.debounce(async (e) => {
             state["user" + i] = await renderUserProfile(searchField.value, e.target.parentNode)
-
-        })
-
+            console.log(state["user" + i])
+        }), 2000)
 
         const label = document.createElement("label")
         label.appendChild(document.createTextNode(`Enter ${i == 1 ? "1st" : "2nd"} username:`))
@@ -117,7 +116,6 @@ async function renderUserSelector() {
 
         userContainer.appendChild(label)
         userContainer.appendChild(searchField)
-        userContainer.appendChild(getButt)
 
         inputBox.appendChild(userContainer)
     }
@@ -127,6 +125,7 @@ async function renderUserSelector() {
     while (modal.firstChild) {
         modal.firstChild.remove()
     }
+    modal.appendChild(logo)
     modal.appendChild(container)
 
     const nextButton = document.createElement("button")
@@ -138,10 +137,20 @@ async function renderUserSelector() {
     nextButton.appendChild(nButtonText)
     nextButton.addEventListener("click", async (e) => {
         if (Object.entries(state.user1).length > 0 && Object.entries(state.user2).length > 0) {
+            logo.classList.replace("animated-entry", "animated-exit")
             container.classList.replace("animated-entry", "animated-exit")
-            nextButton.classList.replace("animated-entry", "animated-exit")
+            if(nextButton.classList.contains("animated-entry")){
+                nextButton.classList.remove("animated-entry")
+            }
+            nextButton.classList.add("animated-exit")
             state.user1Playlists = getPlaylists(state.user1.id)
             state.user2Playlists = getPlaylists(state.user2.id)
+            setTimeout(renderPlaylistIncluder, 2000)
+        }else {
+            if(nextButton.classList.contains("animated-entry")){
+                nextButton.classList.remove("animated-entry")
+            }
+            nextButton.classList.add("invalid-shake")
         }
     })
 
@@ -150,6 +159,13 @@ async function renderUserSelector() {
 
 async function renderPlaylistIncluder() {
     const modal = document.getElementById("modal-screen")
+
+    const logo = document.createElement("img")
+    logo.classList.add("logo", "animated-entry")
+    logo.src = "./logo.png"
+    logo.alt = "squadified banner logo"
+    modal.appendChild(logo)
+
     const container = document.createElement("div")
     container.id = "playlist-select-container"
     container.classList.add("animated-entry")
@@ -193,9 +209,19 @@ async function renderPlaylistIncluder() {
     resultsButton.appendChild(rButtonText)
     resultsButton.addEventListener("click", (e) => {
         if (state.user1Included.length > 0 && state.user2Included.length > 0) {
+            logo.classList.replace("animated-entry", "animated-exit")
             container.classList.replace("animated-entry", "animated-exit")
-            resultsButton.classList.replace("animated-entry", "animated-exit")
+            if(resultsButton.classList.contains("animated-entry")){
+                resultsButton.classList.remove("animated-entry")
+            }
+            resultsButton.classList.add("animated-exit")
             modal.classList.add("become-black")
+            setTimeout(loadResults, 2000)
+        }else {
+            if(resultsButton.classList.contains("animated-entry")){
+                resultsButton.classList.remove("animated-entry")
+            }
+            resultsButton.classList.add("invalid-shake")
         }
 
     })
@@ -287,23 +313,21 @@ async function renderPlaylistItem(playlist, parent) {
  * @returns {Promise<void>}
  */
 async function renderUserProfile(username, parent) {
-    const previous = parent.getElementsByClassName("user-profile")[0]
-    if (previous) {
-        previous.remove()
+    const previous = parent.querySelectorAll(".user-profile")
+    if (previous){
+        previous.forEach(p => p.remove())
     }
+
     let userObject = {}
     try {
         userObject = await getUser(username)
 
     } catch (e) {
-        return {}
+        return userObject
         console.log(e)
     }
 
     const userProfile = document.createElement("div")
-    window.requestAnimationFrame(() => {
-        return
-    })
     userProfile.classList.add("user-profile", "fade-entry")
 
     const userAvi = document.createElement("img")
@@ -343,7 +367,6 @@ async function loadResults() {
     const u2SongFeatures = await getSongFeatures(state.user2Songs)
     const user2AvgFeatures = await getAvgFeatures(u2SongFeatures)
     state.user2Results = LABELS.map(l => user2AvgFeatures[l.toLowerCase()])
-
 }
 
 async function renderResults() {
@@ -387,6 +410,18 @@ async function renderResults() {
     })
     canvasContainer.appendChild(canvas)
 
+    const sideBox = document.createElement("div")
+    sideBox.classList.add("side-box")
+
+
+
+    const logo = document.createElement("img")
+    logo.classList.add("logo")
+    logo.src = "./logo.png"
+    logo.alt = "squadified banner logo"
+    sideBox.appendChild(logo)
+
+
     const featureInfo = document.createElement("p")
     featureInfo.classList.add("info-text")
     featureInfo.innerHTML = `
@@ -395,7 +430,9 @@ async function renderResults() {
     <strong>Acousticness</strong> is a prediction of whether the track is acoustic<br>
     <strong>Positivity</strong> is how happy or cheerful a song sounds, with low values sounding depressed or angry
     `
-    canvasContainer.appendChild(featureInfo)
+    sideBox.appendChild(featureInfo)
+
+    canvasContainer.appendChild(sideBox)
 
     document.getElementById("modal-screen").appendChild(canvasContainer)
     document.getElementById("modal-screen").appendChild(await renderRecommendations())
@@ -521,13 +558,6 @@ window.onload = async function () {
 
 }
 
-window.addEventListener("click", (e) => {
-    if (e.target == document.getElementById("modal-screen")
-        && state.user1ID && state.user2ID) {
-        //document.getElementById("modal-screen").style.display = "none"
-    }
-})
-
 window.addEventListener("animationend", (e) => {
 
     if (e.animationName == "slide-out" || e.animationName == "fade-out") {
@@ -535,12 +565,6 @@ window.addEventListener("animationend", (e) => {
         document.querySelectorAll(".animated-exit, .fade-exit").forEach((e) => {
             e.remove()
         })
-    }
-    if (e.path[0].id == "user-select-container" && e.animationName == "slide-out") {
-        renderPlaylistIncluder()
-    }
-    if (e.path[0].id == "playlist-select-container" && e.animationName == "slide-out") {
-        loadResults()
     }
     if (e.path[0].classList.contains("loading-lp") && e.animationName == "slide-in") {
         document.getElementsByClassName("loading-lp")[0].classList.replace("animated-entry", "spin-on-load")
@@ -555,5 +579,8 @@ window.addEventListener("animationend", (e) => {
         renderRecommendations()
     }if(e.path[0].classList.contains("song-bubble") && e.animationName == "slide-in"){
         e.path[0].classList.replace("animated-entry", "spin-forever")
+    }
+    if(e.animationName == "shake"){
+        e.path[0].classList.remove("invalid-shake")
     }
 })
