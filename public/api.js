@@ -83,15 +83,7 @@ getSongFeatures = async function (songs) {
     }))
     //console.log("complete response from server: ", features)
     var features2 = features.data;
-    console.log("features/data given by server: ", features2)
-    /*
-    const features = (await axios({
-        method: "get",
-        url: "https://api.spotify.com/v1/audio-features",
-        headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
-        params: {"ids": songIDs.join(",")}
-    })).data.audio_features
-    */
+    //console.log("features/data given by server: ", features2)
     featuresArray.push(...features2)
     
     return featuresArray

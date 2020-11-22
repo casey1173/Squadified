@@ -107,25 +107,23 @@ app.get("/songs", (req, res) => {
     sIds.forEach(function(sid) {
         songData = Song.findByID(sid);
         if (songData != null) {
-            //console.log("adding songs from database!")
             if (songData.features != null) {
                 songFeatures.push(songData.features)
+                if (count == 0) {
+                    console.log("getting song(s) from database!")
+                    count++;
+                }
             } else {
                 spotifySongs.push(sid);
             }
-            count = count+1;
-            if (count == 3) {
-                //console.log("songFeatures from database: ", songFeatures)
-            }
             
         } else {
-            //console.log(sid);
             spotifySongs.push(sid);
         }
     })
     //console.log("stored songs: ", storedSongs)
     //console.log("spotify songs: ", spotifySongs)
-    console.log(req.headers.authorization);
+    //console.log(req.headers.authorization);
     //console.log(spotifySongs.join(","))
 
     if (spotifySongs.length != 0) {
@@ -136,7 +134,7 @@ app.get("/songs", (req, res) => {
             //console.log("spotify response: ", response)
             const features = response.data.audio_features;
             //console.log("spotify features: ", features)
-            console.log("spotifySongs (should be logged to database next): ", spotifySongs)
+            console.log("Pulled ",  spotifySongs.length, "songs from Spotify, logging ids & audio features to \\allsongs db")
             songFeatures.push(...features)
             //console.log("songFeatures from spotify: ", songFeatures)
             songFeatures = songFeatures.filter(function (feat) {
@@ -147,16 +145,6 @@ app.get("/songs", (req, res) => {
             res.send(songFeatures)
             //res.send(songFeatures)
         })
-        /*
-        const features = (axios({
-            method: "get",
-            url: "https://api.spotify.com/v1/audio-features",
-            headers: req.headers.authorization,
-            params: {"ids": spotifySongs.join(",")}
-        })).data.audio_features 
-        Song.createSongs(spotifySongs)
-        Song.addFeatures(spotifySongs, features)
-        storedSongs.push(...features)*/
     } else {
         console.log("all songs in database already")
         songFeatures = songFeatures.filter(function (feat) {
