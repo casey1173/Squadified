@@ -357,12 +357,14 @@ async function loadResults() {
     modal.appendChild(loadingLP)
 
     state.user1Songs = await getSongs(state.user1Included)
-    const u1SongFeatures = await getSongFeatures(state.user1Songs)
+    let u1SongFeatures = await getSongFeatures(state.user1Songs)
+    u1SongFeatures = u1SongFeatures.filter(f => Object.keys(f).length !== 0)
     const user1AvgFeatures = await getAvgFeatures(u1SongFeatures)
     state.user1Results = LABELS.map(l => user1AvgFeatures[l.toLowerCase()])
 
-    state.user2Songs = await getSongs(state.user2Included)
-    const u2SongFeatures = await getSongFeatures(state.user2Songs)
+    state.user2Songs = (await getSongs(state.user2Included))
+    let u2SongFeatures = await getSongFeatures(state.user2Songs)
+    u2SongFeatures = u2SongFeatures.filter(f => Object.keys(f).length !== 0)
     const user2AvgFeatures = await getAvgFeatures(u2SongFeatures)
     state.user2Results = LABELS.map(l => user2AvgFeatures[l.toLowerCase()])
 }
