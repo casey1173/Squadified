@@ -72,10 +72,10 @@ getSongFeatures = async function (songs) {
 
     const features = (await axios({
         method: "get",
-        url: "https://api.spotify.com/v1/audio-features",
+        url: "https://www.squadified.com/songs",
         headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
         params: {"ids": songIDs.join(",")}
-    })).data.audio_features
+    })).data
     featuresArray.push(...features)
 
     return featuresArray

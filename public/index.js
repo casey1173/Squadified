@@ -104,7 +104,7 @@ async function renderUserSelector() {
         const searchField = document.createElement("input")
         searchField.classList.add("user-search-field")
         searchField.id = "user-search-field-" + i
-        searchField.addEventListener("input", _.debounce(async (e) => {
+        searchField.addEventListener("input", _.debounce(async function(e){
             state["user" + i] = await renderUserProfile(searchField.value, e.target.parentNode)
             console.log(state["user" + i])
         }), 2000)
