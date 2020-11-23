@@ -25,9 +25,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d6f2307-3ccd-4a8e-a5e6-8c005e243790" name="Default Changelist" comment="removed console logs">
+    <list default="true" id="6d6f2307-3ccd-4a8e-a5e6-8c005e243790" name="Default Changelist" comment="more null song errors fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +49,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="ProjectId" id="1kQjG2k8E6LdAfd7HHXTZaTqtqA" />
   <component name="ProjectViewState">
@@ -77,7 +79,7 @@
       <workItem from="1605740988982" duration="52233000" />
       <workItem from="1605906151726" duration="47778000" />
       <workItem from="1606134829876" duration="1175000" />
-      <workItem from="1606145340045" duration="4669000" />
+      <workItem from="1606145340045" duration="8043000" />
     </task>
     <task id="LOCAL-00001" summary="using webstorm">
       <created>1605640437925</created>
@@ -128,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606166685341</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="more null song errors fixed">
+      <created>1606167533895</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1606167533895</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,7 +213,8 @@
     <MESSAGE value="fixed null song bug" />
     <MESSAGE value="fetching from server again" />
     <MESSAGE value="removed console logs" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed console logs" />
+    <MESSAGE value="more null song errors fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="more null song errors fixed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-79" y="-877" key="#Inspections" timestamp="1605658458166">
@@ -223,23 +233,23 @@
       <screen x="-345" y="-1080" width="2560" height="1050" />
     </state>
     <state x="436" y="-910" key="SettingsEditor/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050" timestamp="1605652302406" />
-    <state x="581" y="379" key="VCS.ChangelistChooser" timestamp="1606093425580">
+    <state x="581" y="379" key="VCS.ChangelistChooser" timestamp="1606169506595">
       <screen x="0" y="0" width="1536" height="930" />
     </state>
-    <state x="581" y="379" key="VCS.ChangelistChooser/0.0.1536.930@0.0.1536.930" timestamp="1606093425580" />
-    <state x="361" y="198" key="Vcs.Push.Dialog.v2" timestamp="1606166688943">
+    <state x="581" y="379" key="VCS.ChangelistChooser/0.0.1536.930@0.0.1536.930" timestamp="1606169506595" />
+    <state x="361" y="198" key="Vcs.Push.Dialog.v2" timestamp="1606167536387">
       <screen x="0" y="0" width="1536" height="930" />
     </state>
     <state x="257" y="-856" key="Vcs.Push.Dialog.v2/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050" timestamp="1605920997464" />
-    <state x="361" y="198" key="Vcs.Push.Dialog.v2/0.0.1536.930@0.0.1536.930" timestamp="1606166688943" />
-    <state x="93" y="93" width="1350" height="744" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606093782498">
+    <state x="361" y="198" key="Vcs.Push.Dialog.v2/0.0.1536.930@0.0.1536.930" timestamp="1606167536387" />
+    <state x="87" y="103" width="1350" height="744" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606170858260">
       <screen x="0" y="0" width="1536" height="930" />
     </state>
-    <state x="93" y="93" width="1350" height="744" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.930@0.0.1536.930" timestamp="1606093782498" />
-    <state x="586" y="379" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606134844087">
+    <state x="87" y="103" width="1350" height="744" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.930@0.0.1536.930" timestamp="1606170858260" />
+    <state x="586" y="379" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606169491603">
       <screen x="0" y="0" width="1536" height="930" />
     </state>
-    <state x="586" y="379" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.930@0.0.1536.930" timestamp="1606134844087" />
+    <state x="586" y="379" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.930@0.0.1536.930" timestamp="1606169491603" />
     <state x="654" y="-943" width="586" height="801" key="find.popup" timestamp="1605962665334">
       <screen x="-321" y="-1080" width="2560" height="1050" />
     </state>
