@@ -27,7 +27,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6d6f2307-3ccd-4a8e-a5e6-8c005e243790" name="Default Changelist" comment="app now starts in the right place (select users)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/api.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +43,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="noCache" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -201,11 +200,11 @@
       <screen x="0" y="0" width="1536" height="930" />
     </state>
     <state x="581" y="379" key="VCS.ChangelistChooser/0.0.1536.930@0.0.1536.930" timestamp="1606093425580" />
-    <state x="257" y="-856" key="Vcs.Push.Dialog.v2" timestamp="1605920997464">
-      <screen x="-345" y="-1080" width="2560" height="1050" />
+    <state x="361" y="198" key="Vcs.Push.Dialog.v2" timestamp="1606094129852">
+      <screen x="0" y="0" width="1536" height="930" />
     </state>
     <state x="257" y="-856" key="Vcs.Push.Dialog.v2/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050" timestamp="1605920997464" />
-    <state x="361" y="198" key="Vcs.Push.Dialog.v2/0.0.1536.930@0.0.1536.930" timestamp="1605640463530" />
+    <state x="361" y="198" key="Vcs.Push.Dialog.v2/0.0.1536.930@0.0.1536.930" timestamp="1606094129852" />
     <state x="93" y="93" width="1350" height="744" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606093782498">
       <screen x="0" y="0" width="1536" height="930" />
     </state>
@@ -218,10 +217,11 @@
       <screen x="-321" y="-1080" width="2560" height="1050" />
     </state>
     <state x="654" y="-943" width="586" height="801" key="find.popup/0.0.1536.930/-321.-1080.2560.1050@-321.-1080.2560.1050" timestamp="1605962665334" />
-    <state x="715" y="-842" key="git4idea.branch.GitSmartOperationDialog" timestamp="1605642299401">
-      <screen x="-345" y="-1080" width="2560" height="1050" />
+    <state x="636" y="211" key="git4idea.branch.GitSmartOperationDialog" timestamp="1606094163336">
+      <screen x="0" y="0" width="1536" height="930" />
     </state>
     <state x="715" y="-842" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050" timestamp="1605642299401" />
+    <state x="636" y="211" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.930@0.0.1536.930" timestamp="1606094163336" />
     <state x="562" y="694" key="run.anything.popup" timestamp="1606070131642">
       <screen x="0" y="0" width="1536" height="930" />
     </state>
