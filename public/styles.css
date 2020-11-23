@@ -334,7 +334,7 @@ textarea.user-search-field {
 }
 
 .spin-on-load{
-    animation: spin 1s infinite forwards;
+    animation: spin 1s 3 forwards;
 }
 
 .spin-forever{
