@@ -357,9 +357,7 @@ async function loadResults() {
     modal.appendChild(loadingLP)
 
     state.user1Songs = await getSongs(state.user1Included)
-    console.log(state.user1Songs)
     const u1SongFeatures = await getSongFeatures(state.user1Songs)
-    console.log(u1SongFeatures)
     const user1AvgFeatures = await getAvgFeatures(u1SongFeatures)
     state.user1Results = LABELS.map(l => user1AvgFeatures[l.toLowerCase()])
 

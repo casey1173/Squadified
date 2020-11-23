@@ -25,11 +25,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d6f2307-3ccd-4a8e-a5e6-8c005e243790" name="Default Changelist" comment="fixed null song bug">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/api.js" afterDir="false" />
+    <list default="true" id="6d6f2307-3ccd-4a8e-a5e6-8c005e243790" name="Default Changelist" comment="fetching from server again">
       <change beforePath="$PROJECT_DIR$/public/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +76,7 @@
       <workItem from="1605740988982" duration="52233000" />
       <workItem from="1605906151726" duration="47778000" />
       <workItem from="1606134829876" duration="1175000" />
-      <workItem from="1606145340045" duration="3207000" />
+      <workItem from="1606145340045" duration="3877000" />
     </task>
     <task id="LOCAL-00001" summary="using webstorm">
       <created>1605640437925</created>
@@ -116,7 +113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606135847462</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fetching from server again">
+      <created>1606158522694</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1606158522694</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,7 +194,8 @@
     <MESSAGE value="added images" />
     <MESSAGE value="app now starts in the right place (select users)" />
     <MESSAGE value="fixed null song bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed null song bug" />
+    <MESSAGE value="fetching from server again" />
+    <option name="LAST_COMMIT_MESSAGE" value="fetching from server again" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-79" y="-877" key="#Inspections" timestamp="1605658458166">
@@ -213,11 +218,11 @@
       <screen x="0" y="0" width="1536" height="930" />
     </state>
     <state x="581" y="379" key="VCS.ChangelistChooser/0.0.1536.930@0.0.1536.930" timestamp="1606093425580" />
-    <state x="361" y="198" key="Vcs.Push.Dialog.v2" timestamp="1606135855125">
+    <state x="361" y="198" key="Vcs.Push.Dialog.v2" timestamp="1606158528215">
       <screen x="0" y="0" width="1536" height="930" />
     </state>
     <state x="257" y="-856" key="Vcs.Push.Dialog.v2/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050" timestamp="1605920997464" />
-    <state x="361" y="198" key="Vcs.Push.Dialog.v2/0.0.1536.930@0.0.1536.930" timestamp="1606135855125" />
+    <state x="361" y="198" key="Vcs.Push.Dialog.v2/0.0.1536.930@0.0.1536.930" timestamp="1606158528215" />
     <state x="93" y="93" width="1350" height="744" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606093782498">
       <screen x="0" y="0" width="1536" height="930" />
     </state>
