@@ -27,7 +27,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6d6f2307-3ccd-4a8e-a5e6-8c005e243790" name="Default Changelist" comment="app now starts in the right place (select users)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/api.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +44,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="api" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -185,15 +185,31 @@
       <screen x="-345" y="-1080" width="2560" height="1050" />
     </state>
     <state x="-79" y="-877" key="#Inspections/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050" timestamp="1605658458166" />
+    <state x="93" y="93" width="1350" height="744" key="DiffContextDialog" timestamp="1606093596681">
+      <screen x="0" y="0" width="1536" height="930" />
+    </state>
+    <state x="93" y="93" width="1350" height="744" key="DiffContextDialog/0.0.1536.930@0.0.1536.930" timestamp="1606093596681" />
+    <state x="147" y="75" key="MergeDialog" timestamp="1606093439088">
+      <screen x="0" y="0" width="1536" height="930" />
+    </state>
+    <state x="147" y="75" key="MergeDialog/0.0.1536.930@0.0.1536.930" timestamp="1606093439088" />
     <state x="436" y="-910" key="SettingsEditor" timestamp="1605652302406">
       <screen x="-345" y="-1080" width="2560" height="1050" />
     </state>
     <state x="436" y="-910" key="SettingsEditor/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050" timestamp="1605652302406" />
+    <state x="581" y="379" key="VCS.ChangelistChooser" timestamp="1606093425580">
+      <screen x="0" y="0" width="1536" height="930" />
+    </state>
+    <state x="581" y="379" key="VCS.ChangelistChooser/0.0.1536.930@0.0.1536.930" timestamp="1606093425580" />
     <state x="257" y="-856" key="Vcs.Push.Dialog.v2" timestamp="1605920997464">
       <screen x="-345" y="-1080" width="2560" height="1050" />
     </state>
     <state x="257" y="-856" key="Vcs.Push.Dialog.v2/0.0.1536.930/-345.-1080.2560.1050@-345.-1080.2560.1050" timestamp="1605920997464" />
     <state x="361" y="198" key="Vcs.Push.Dialog.v2/0.0.1536.930@0.0.1536.930" timestamp="1605640463530" />
+    <state x="93" y="93" width="1350" height="744" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1606093782498">
+      <screen x="0" y="0" width="1536" height="930" />
+    </state>
+    <state x="93" y="93" width="1350" height="744" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.930@0.0.1536.930" timestamp="1606093782498" />
     <state x="586" y="379" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605640411011">
       <screen x="0" y="0" width="1536" height="930" />
     </state>

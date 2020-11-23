@@ -40,7 +40,6 @@ getPlaylists = async function (username) {
 }
 
 getSongs = async function (playlist) {
-
     let songs = []
     let offset = 0
     const limit = 100
@@ -66,26 +65,18 @@ getSongs = async function (playlist) {
 
 getSongFeatures = async function (songs) {
     let songIDs = (await songs).map(s => s.id)
-    let songNames = (await songs).map(s => s.name)
     let featuresArray = []
 
     songIDs.splice(100)
-    songNames.splice(100)
-    console.log(songIDs)
-    console.log(songNames)
-    
+
     const features = (await axios({
         method: "get",
-        url: "https://www.squadified.com/songs",
+        url: "https://api.spotify.com/v1/audio-features",
         headers: {"Authorization": `Bearer ${(await getCurrToken()).code}`},
         params: {"ids": songIDs.join(",")}
-                 //"names": songNames.join(",")}
-    }))
-    //console.log("complete response from server: ", features)
-    var features2 = features.data;
-    //console.log("features/data given by server: ", features2)
-    featuresArray.push(...features2)
-    
+    })).data.audio_features
+    featuresArray.push(...features)
+
     return featuresArray
 }
 
