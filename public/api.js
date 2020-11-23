@@ -59,12 +59,13 @@ getSongs = async function (playlist) {
 
     songs = songs.map((s, i) => {
         return songs[i].track
-    })
+    }).filter(s => s != null)
     return songs
 }
 
 getSongFeatures = async function (songs) {
-    let songIDs = (await songs).map(s => s.id)
+
+    let songIDs = (await songs).map(s => s != null ? s.id : null).filter(s => s != null)
     let featuresArray = []
 
     songIDs.splice(100)
