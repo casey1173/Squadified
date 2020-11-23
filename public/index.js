@@ -357,16 +357,14 @@ async function loadResults() {
     modal.appendChild(loadingLP)
 
     state.user1Songs = await getSongs(state.user1Included)
-    let u1SongFeatures = await getSongFeatures(state.user1Songs)
-    u1SongFeatures = u1SongFeatures.filter(f => Object.keys(f).length !== 0)
+    const u1SongFeatures = await getSongFeatures(state.user1Songs)
     const user1AvgFeatures = await getAvgFeatures(u1SongFeatures)
-    state.user1Results = LABELS.map(async (l) => await user1AvgFeatures[l.toLowerCase()])
+    state.user1Results = LABELS.map(l => user1AvgFeatures[l.toLowerCase()])
 
-    state.user2Songs = (await getSongs(state.user2Included))
-    let u2SongFeatures = await getSongFeatures(state.user2Songs)
-    u2SongFeatures = u2SongFeatures.filter(f => Object.keys(f).length !== 0)
+    state.user2Songs = await getSongs(state.user2Included)
+    const u2SongFeatures = await getSongFeatures(state.user2Songs)
     const user2AvgFeatures = await getAvgFeatures(u2SongFeatures)
-    state.user2Results = LABELS.map(async (l) => await user2AvgFeatures[l.toLowerCase()])
+    state.user2Results = LABELS.map(l => user2AvgFeatures[l.toLowerCase()])
 }
 
 async function renderResults() {
@@ -387,13 +385,13 @@ async function renderResults() {
                     label: state.user1.display_name,
                     backgroundColor: 'rgb(204, 46, 138)',
                     borderColor: 'rgb(204, 46, 138)',
-                    data: await state.user1Results
+                    data: state.user1Results
                 },
                 {
                     label: state.user2.display_name,
                     backgroundColor: 'rgb(46, 204, 113)',
                     borderColor: 'rgb(46, 204, 113)',
-                    data: await state.user2Results
+                    data: state.user2Results
                 }]
         },
         // Configuration options go here
