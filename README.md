@@ -15,6 +15,6 @@ Finally, hit results and we'll show analytics for how the two playlists compare 
 - Joint song recommendations
 
 # Backend
-- The app functions through api calls to our server and Spotify. API requests for the audio features of songs are filtered through the server database. This reduces API calls to Spotify. Any unrecognized songs are requested from Spotify and logged to the database for future reference. The full song database can be viewed at squadified.com/allsongs.
+The app functions through api calls to our server and Spotify. API requests for the audio features of songs are filtered through the server database. This reduces API calls to Spotify. Any unrecognized songs are requested from Spotify and logged to the database for future reference. The full song database can be viewed at squadified.com/allsongs.
 
 
