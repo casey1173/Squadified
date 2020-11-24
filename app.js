@@ -136,8 +136,4 @@ app.get("/songs", (req, res) => {
         })
         res.send(songFeatures)
     }
-    //console.log("returned features list: ", storedSongs)
-    
-    //return songFeatures;    
-    //res.json(s);
 });
